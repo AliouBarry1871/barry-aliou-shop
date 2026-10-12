@@ -409,6 +409,16 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
+server.on('error', err => {
+  if (err.code === 'EADDRINUSE') {
+    console.log(`ℹ️ Le serveur Barry Aliou Shop est déjà en cours d'exécution sur : http://localhost:${PORT}`);
+    process.exit(0);
+  } else {
+    console.error('Erreur au démarrage du serveur :', err);
+  }
+});
+
 server.listen(PORT, () => {
   console.log(`✅ Serveur Barry Aliou Shop + Base de données SQLite démarrés sur : http://localhost:${PORT}`);
 });
+
