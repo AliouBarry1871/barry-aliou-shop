@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Barry Aliou Shop — Boutique Internationale de Vêtements & Chaussures</title>
+  <meta name="description" content="Barry Aliou Shop : Vêtements et chaussures de qualité avec livraison partout dans le monde (Sénégal, Guinée, USA, Europe). Prix en FCFA, Franc Guinéen (GNF), EUR et USD." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Bandeau supérieur d'information internationale, devises & sécurité -->
+  <div class="top-announcement">
+    <div class="container top-announcement-inner">
+      <span class="announcement-badge">🌍 LIVRAISON MONDIALE</span>
+      <p>
+        Sénégal 🇸🇳 • Guinée 🇬🇳 (Franc Guinéen GNF) • USA 🇺🇸 • Europe 🇪🇺 — Acompte <strong>10 % reçu sur le +221 77 453 22 55</strong>
+      </p>
+      <div class="top-announcement-actions">
+        <!-- Sélecteur de Devise d'affichage rapide -->
+        <select id="currencySelector" class="currency-select-top" aria-label="Choisir la monnaie d'affichage">
+          <option value="ALL">💱 Toutes devises (FCFA + GNF)</option>
+          <option value="FCFA">🇸🇳 FCFA (XOF)</option>
+          <option value="GNF">🇬🇳 Franc Guinéen (GNF)</option>
+          <option value="USD">🇺🇸 Dollar ($ USD)</option>
+          <option value="EUR">🇪🇺 Euro (€ EUR)</option>
+        </select>
+        <span class="security-pill" title="Protection anti-fraude et anti-piratage active">🔒 Sécurisé</span>
+        <button type="button" class="share-shop-btn" id="shareShopTopBtn" title="Partager le lien sur les réseaux sociaux">
+          Partager
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- En-tête de navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#catalogue" class="brand-logo">
+        <span class="brand-monogram">BAS</span>
+        <div class="brand-text">
+          <span class="brand-name" id="brandNameDisplay">Barry Aliou Shop</span>
+          <span class="brand-tagline">Vêtements &amp; Chaussures • Livraison Mondiale</span>
+        </div>
+      </a>
+
+      <div class="header-search">
+        <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Rechercher un vêtement, une chaussure, une couleur..." aria-label="Rechercher un article" />
+      </div>
+
+      <div class="header-actions">
+        <!-- BOUTON MES FAVORIS -->
+        <button type="button" class="btn btn-favorites-header" id="openFavoritesModalBtn" title="Voir mes articles favoris">
+          <span class="heart-icon">❤️</span>
+          <span class="hide-sm">Favoris</span>
+          <span class="favorites-count-badge" id="favoritesHeaderCount">0</span>
+        </button>
+
+        <!-- BOUTON COMPTE CLIENT (Inscription / Profil connecté) -->
+        <button type="button" class="btn btn-secondary" id="openCustomerAuthBtn" title="Mon compte client">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span id="customerHeaderLabel">Compte Client</span>
+        </button>
+
+        <!-- WhatsApp direct -->
+        <a href="https://wa.me/221774532255?text=Bonjour%20Barry%20Aliou%20Shop%2C%20j%27aimerais%20avoir%20des%20renseignements%20sur%20vos%20articles." target="_blank" rel="noopener" class="btn btn-whatsapp-header" title="Discuter directement sur WhatsApp">
+          <span class="hide-sm">WhatsApp</span>
+        </a>
+
+        <!-- Statut non connecté Admin -->
+        <button type="button" class="btn btn-outline-gold" id="openLoginModalBtn">
+          <span>🔒 Admin</span>
+        </button>
+
+        <!-- Statut connecté Admin (masqué par défaut) -->
+        <div class="admin-logged-pill hidden" id="adminHeaderControls">
+          <button type="button" class="btn btn-primary" id="openAddProductBtn">
+            <span>+ Article</span>
+          </button>
+          <button type="button" class="btn btn-secondary" id="toggleAdminPanelBtn">
+            <span>Gestion</span>
+            <span class="orders-count-badge" id="adminOrdersBadge">0</span>
+          </button>
+          <button type="button" class="btn-icon-logout" id="logoutAdminBtn" title="Se déconnecter du mode administrateur">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section Hero -->
+  <section class="hero-section">
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badges-row">
+          <div class="hero-pill">
+            <span class="pulse-dot"></span>
+            <span>Barry Aliou Shop • Qualité &amp; Authenticité</span>
+          </div>
+          <div class="hero-world-pill">
+            🇬🇳 Prix affichés en FCFA &amp; Franc Guinéen (GNF)
+          </div>
+        </div>
+        <h1 class="hero-title">Vos vêtements de qualité livrés partout dans le monde.</h1>
+        <p class="hero-subtitle">
+          Créez votre compte client en 10 secondes pour sauvegarder vos <strong>articles en favoris ❤️</strong>. Commandez depuis le <strong>Sénégal</strong>, la <strong>Guinée (en GNF)</strong>, les <strong>États-Unis</strong> ou l'<strong>Europe</strong> en réglant seulement <strong>10 % d'acompte</strong> vers le <strong>+221 77 453 22 55</strong>.
+        </p>
+        <div class="hero-cta-group">
+          <a href="#catalogue" class="btn btn-primary btn-lg">
+            <span>Voir les articles disponibles</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <div class="payment-methods-pills">
+            <span class="pay-pill pay-wave">Wave</span>
+            <span class="pay-pill pay-om">Orange Money (SN &amp; GN 🇬🇳)</span>
+            <span class="pay-pill pay-card">💳 Carte Bancaire → Wave</span>
+          </div>
+        </div>
+
+        <div class="hero-steps">
+          <div class="hero-step-item">
+            <span class="step-num">1</span>
+            <div>
+              <strong>Compte &amp; Favoris ❤️</strong>
+              <p>Inscrivez-vous (Nom, Prénom, Téléphone) pour sauvegarder vos habits préférés.</p>
+            </div>
+          </div>
+          <div class="hero-step-item">
+            <span class="step-num">2</span>
+            <div>
+              <strong>Prix en FCFA &amp; Franc Guinéen</strong>
+              <p>Chaque annonce affiche le prix exact en FCFA, en GNF guinéen, en € et en $.</p>
+            </div>
+          </div>
+          <div class="hero-step-item">
+            <span class="step-num">3</span>
+            <div>
+              <strong>10 % convertis sur notre Wave</strong>
+              <p>Payez par Wave, Orange Money ou Carte Bancaire vers le +221 77 453 22 55.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-card-showcase">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1000&q=85" alt="Barry Aliou Shop Collection" class="hero-main-img" />
+          <div class="hero-floating-card">
+            <div class="floating-icon">🌍</div>
+            <div>
+              <strong>Sénégal • Guinée (GNF) • USA • Europe</strong>
+              <span>Conversion automatique de l'acompte de 10 % vers le +221 77 453 22 55</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TABLEAU DE BORD ADMINISTRATEUR SÉCURISÉ (mamadoualioubarry1871@gmail.com) -->
+  <section class="admin-dashboard-section hidden" id="adminDashboardSection">
+    <div class="container">
+      <div class="admin-banner">
+        <div class="admin-banner-left">
+          <span class="admin-status-tag">🔒 SESSION ADMINISTRATEUR SÉCURISÉE</span>
+          <h2>Administration — Barry Aliou Shop</h2>
+          <p>Propriétaire : <strong>mamadoualioubarry1871@gmail.com</strong> • Réception Wave &amp; OM : <strong>+221 77 453 22 55</strong></p>
+        </div>
+        <div class="admin-banner-actions">
+          <button type="button" class="btn btn-primary" id="adminBannerAddBtn">
+            <span>+ Nouvel article</span>
+          </button>
+          <button type="button" class="btn btn-outline-light" id="changeGnfRateBtn">
+            🇬🇳 Taux GNF (1 FCFA = <span id="currentGnfRateLabel">14.3</span> GNF)
+          </button>
+          <button type="button" class="btn btn-outline-light" id="changeAdminPinBtn">
+            🔑 Code PIN Sécurité
+          </button>
+          <button type="button" class="btn btn-outline-light" id="editShopNameBtn">
+            ✏️ Nom boutique
+          </button>
+        </div>
+      </div>
+
+      <!-- Statistiques rapides -->
+      <div class="admin-stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Articles publiés</span>
+          <strong class="stat-value" id="statPublishedCount">0</strong>
+          <span class="stat-sub">En ligne actuellement</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Commandes mondiales</span>
+          <strong class="stat-value stat-accent" id="statOrdersCount">0</strong>
+          <span class="stat-sub">Articles réservés &amp; retirés du site</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Total Acomptes 10 % reçus</span>
+          <strong class="stat-value stat-wave" id="statDepositsTotal">0 FCFA</strong>
+          <span class="stat-sub">Sur le +221 77 453 22 55</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Clients inscrits (Favoris)</span>
+          <strong class="stat-value" id="statCustomersCount">0</strong>
+          <span class="stat-sub">Comptes clients enregistrés</span>
+        </div>
+      </div>
+
+      <!-- Onglets Administrateur -->
+      <div class="admin-tabs">
+        <button type="button" class="admin-tab active" data-tab="orders">
+          📦 Commandes &amp; Livraisons (<span id="tabOrdersCount">0</span>)
+        </button>
+        <button type="button" class="admin-tab" data-tab="inventory">
+          👕 Catalogue complet (<span id="tabInventoryCount">0</span>)
+        </button>
+        <button type="button" class="admin-tab" data-tab="customers">
+          👥 Clients inscrits &amp; Favoris (<span id="tabCustomersCount">0</span>)
+        </button>
+      </div>
+
+      <!-- Contenu Onglet 1 : Commandes clients -->
+      <div class="admin-tab-content" id="adminTabOrders">
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div>
+              <h3>Suivi des commandes internationales &amp; nationales</h3>
+              <p>Retrouvez le client, son pays (Sénégal, Guinée, USA, Europe...), la monnaie choisie et son paiement de 10 %.</p>
+            </div>
+          </div>
+          <div id="ordersListContainer" class="orders-list-container"></div>
+        </div>
+      </div>
+
+      <!-- Contenu Onglet 2 : Inventaire complet -->
+      <div class="admin-tab-content hidden" id="adminTabInventory">
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div>
+              <h3>Tous les articles (Publiés &amp; Commandés)</h3>
+              <p>Ajoutez, modifiez ou supprimez vos articles. Vous pouvez remettre en vente un article si nécessaire.</p>
+            </div>
+          </div>
+          <div id="adminInventoryContainer" class="admin-inventory-table-wrap"></div>
+        </div>
+      </div>
+
+      <!-- Contenu Onglet 3 : Clients inscrits -->
+      <div class="admin-tab-content hidden" id="adminTabCustomers">
+        <div class="admin-panel-card">
+          <div class="admin-panel-header">
+            <div>
+              <h3>Comptes clients inscrits sur Barry Aliou Shop</h3>
+              <p>Liste des clients qui ont créé un compte (Nom, Prénom, Téléphone) pour sauvegarder des articles en favoris.</p>
+            </div>
+          </div>
+          <div id="adminCustomersContainer" class="orders-list-container"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION CATALOGUE PUBLIC -->
+  <main class="catalogue-section" id="catalogue">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-eyebrow">BARRY ALIOU SHOP • VITRINE OFFICIELLE</span>
+          <h2 class="section-title">Nos Vêtements &amp; Chaussures</h2>
+          <p class="section-desc">
+            Cliquez sur <strong>🤍 Favoris</strong> pour sauvegarder une annonce dans votre compte, sur <strong>Voir l'annonce</strong> pour nous écrire sur WhatsApp, ou sur <strong>Commander</strong>.
+          </p>
+        </div>
+        <div class="catalogue-meta">
+          <span class="available-pill" id="catalogueCountLabel">0 article disponible</span>
+          <button type="button" class="btn btn-secondary btn-sm hidden" id="catalogueAddBtn">
+            + Ajouter un article
+          </button>
+        </div>
+      </div>
+
+      <!-- Grille des articles publiés -->
+      <div class="products-grid" id="productsGrid"></div>
+
+      <!-- État vide -->
+      <div class="empty-catalogue hidden" id="emptyCatalogueState">
+        <div class="empty-icon">🛍️</div>
+        <h3 id="emptyCatalogueTitle">Aucun article disponible pour le moment</h3>
+        <p id="emptyCatalogueText">Tous nos articles ont été commandés ou aucun article ne correspond à votre recherche.</p>
+        <button type="button" class="btn btn-primary hidden" id="emptyStateAddBtn">
+          + Ajouter un article
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Section Sécurité, Conversion GNF & Carte -> Wave -->
+  <section class="trust-section">
+    <div class="container">
+      <div class="trust-card">
+        <div class="trust-info">
+          <span class="section-eyebrow">CONVERSION AUTOMATIQUE EN FCFA &amp; FRANC GUINÉEN (GNF)</span>
+          <h3>Comment payer les 10 % depuis la Guinée 🇬🇳, les USA 🇺🇸 ou l'Europe 🇪🇺 vers notre Wave ?</h3>
+          <p>
+            Tous les prix sont calculés automatiquement en <strong>FCFA</strong>, en <strong>Franc Guinéen (GNF)</strong>, en <strong>Dollars ($)</strong> et en <strong>Euros (€)</strong> :
+          </p>
+          <div class="trust-badges-grid">
+            <div class="trust-mini-item">🇬🇳 <strong>Depuis la Guinée (GNF)</strong> : Transfert Orange Money International (Guinée → Sénégal) ou TapTap Send / Sendwave vers le <strong>+221 77 453 22 55</strong>.</div>
+            <div class="trust-mini-item">💳 <strong>Par Carte Bancaire (USA / Europe / Monde)</strong> : Paiement par carte converti directement sur notre Wave <strong>+221 77 453 22 55</strong> (via Sendwave, TapTap Send ou Passerelle Carte).</div>
+          </div>
+        </div>
+        <div class="trust-contact-box">
+          <div class="wave-box-large">
+            <div class="multi-pay-badges">
+              <span class="pay-pill pay-wave">Wave Sénégal</span>
+              <span class="pay-pill pay-om">Orange Money (SN / GN 🇬🇳)</span>
+              <span class="pay-pill pay-card">Carte Bancaire</span>
+            </div>
+            <strong class="wave-phone">+221 77 453 22 55</strong>
+            <span class="wave-email">mamadoualioubarry1871@gmail.com</span>
+            <div class="trust-btns-stack">
+              <button type="button" class="btn btn-outline-gold btn-sm" id="copyWaveFooterBtn">
+                Copier le numéro (+221 77 453 22 55)
+              </button>
+              <a href="https://wa.me/221774532255?text=Bonjour%20Barry%20Aliou%20Shop%20!" target="_blank" rel="noopener" class="btn btn-whatsapp btn-sm">
+                Écrire sur WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pied de page -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-monogram">BAS</span>
+        <div>
+          <strong id="footerBrandName">Barry Aliou Shop</strong>
+          <p>Vente internationale de vêtements &amp; chaussures • FCFA, Franc Guinéen (GNF), EUR &amp; USD.</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <span>Wave / Orange Money / WhatsApp : <strong>+221 77 453 22 55</strong></span>
+        <span>•</span>
+        <span>Admin : <strong>mamadoualioubarry1871@gmail.com</strong></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE A : INSCRIPTION / CONNEXION COMPTE CLIENT (POUR LES FAVORIS)   -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="customerAuthModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="customerAuthTitle">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">❤️ ESPACE CLIENT &amp; FAVORIS</span>
+          <h3 id="customerAuthTitle">Créer mon compte client</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeCustomerAuthBtn" aria-label="Fermer">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Vue Formulaire d'inscription (si non connecté) -->
+        <form id="customerRegisterForm">
+          <div class="auth-notice-banner" id="authPromptBanner">
+            Pour ajouter une publication en favoris et la retrouver plus tard, veuillez vous inscrire rapidement ci-dessous :
+          </div>
+
+          <div class="form-group">
+            <label for="clientLastNameInput" class="form-label">Votre Nom <span class="required-star">*</span></label>
+            <input
+              type="text"
+              id="clientLastNameInput"
+              class="form-input"
+              placeholder="Ex : Barry / Diallo / Ndiaye"
+              required
+              maxlength="60"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="clientFirstNameInput" class="form-label">Votre Prénom <span class="required-star">*</span></label>
+            <input
+              type="text"
+              id="clientFirstNameInput"
+              class="form-input"
+              placeholder="Ex : Mamadou Aliou / Fatou"
+              required
+              maxlength="60"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="clientPhoneInput" class="form-label">Votre Numéro de téléphone <span class="required-star">*</span></label>
+            <input
+              type="tel"
+              id="clientPhoneInput"
+              class="form-input"
+              placeholder="Ex : +224 622... / +221 77... / +1..."
+              required
+              maxlength="30"
+            />
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-ghost" id="cancelCustomerAuthBtn">Annuler</button>
+            <button type="submit" class="btn btn-primary">M'inscrire &amp; Activer mes favoris</button>
+          </div>
+        </form>
+
+        <!-- Vue Profil Client (si déjà connecté) -->
+        <div id="customerProfileView" class="hidden">
+          <div class="customer-profile-box">
+            <div class="profile-avatar">👤</div>
+            <h4 id="profileFullNameDisplay">Nom Prénom</h4>
+            <p id="profilePhoneDisplay">+221 77 000 00 00</p>
+            <span class="status-badge status-published">● Compte Client Actif</span>
+          </div>
+          <div class="modal-footer" style="justify-content: space-between;">
+            <button type="button" class="btn btn-ghost" style="color:var(--danger);" id="logoutCustomerBtn">Me déconnecter</button>
+            <button type="button" class="btn btn-primary" id="goToFavoritesFromProfileBtn">Voir mes favoris ❤️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE B : LISTE DE MES ARTICLES FAVORIS ❤️                           -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="favoritesModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="favoritesModalTitle">
+    <div class="modal-card modal-detail">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">❤️ RETROUVEZ VOS ARTICLES PRÉFÉRÉS</span>
+          <h3 id="favoritesModalTitle">Mes Publications en Favoris</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeFavoritesModalBtn" aria-label="Fermer">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="favorites-user-bar" id="favoritesUserBar">
+          <span>Connecté en tant que : <strong id="favBarUserName"></strong></span>
+          <button type="button" class="btn btn-ghost btn-sm" id="favSwitchAccountBtn">Mon profil</button>
+        </div>
+
+        <div id="favoritesListContainer" class="favorites-grid-list">
+          <!-- Injecté par JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE 0 : VOIR L'ANNONCE EN DÉTAIL + BOUTON CONTACTER SUR WHATSAPP   -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="detailModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="detailModalTitle">
+    <div class="modal-card modal-detail">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">FICHE DÉTAILLÉE DE L'ANNONCE</span>
+          <h3 id="detailModalTitle">Détails de l'article</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeDetailModalBtn" aria-label="Fermer">&times;</button>
+      </div>
+
+      <div class="modal-body detail-modal-grid">
+        <div class="detail-image-col">
+          <img id="detailProductImage" src="" alt="" class="detail-main-img" />
+          <div class="detail-security-note">
+            🛡️ Article authentique vérifié par <strong>Barry Aliou Shop</strong> • Livraison disponible dans le monde entier.
+          </div>
+        </div>
+
+        <div class="detail-info-col">
+          <div class="detail-top-badges">
+            <span class="detail-status-badge">● En stock — Disponible</span>
+            <button type="button" class="btn-fav-inline" id="detailToggleFavBtn">
+              🤍 Ajouter en favoris
+            </button>
+          </div>
+
+          <h2 id="detailProductName" class="detail-title">Nom de l'article</h2>
+
+          <div class="detail-price-box">
+            <div class="detail-price-main" id="detailProductPrice">0 FCFA</div>
+            <div class="detail-price-gnf" id="detailProductPriceGnf">🇬🇳 0 GNF (Franc Guinéen)</div>
+            <div class="detail-price-intl" id="detailProductPriceIntl">≈ 0 $ USD / 0 € EUR</div>
+            <div class="detail-deposit-banner">
+              Acompte de réservation (10 %) : <strong id="detailDepositAmount">0 FCFA</strong>
+            </div>
+          </div>
+
+          <div class="detail-section-block">
+            <span class="detail-label">Différentes couleurs disponibles :</span>
+            <div id="detailColorsList" class="color-swatches-row"></div>
+          </div>
+
+          <div class="detail-section-block">
+            <span class="detail-label">Moyens de paiement acceptés (10 % d'acompte) :</span>
+            <div class="payment-methods-pills">
+              <span class="pay-pill pay-wave">Wave (77 453 22 55)</span>
+              <span class="pay-pill pay-om">Orange Money (SN / GN 🇬🇳)</span>
+              <span class="pay-pill pay-card">💳 Carte Bancaire → Wave</span>
+            </div>
+          </div>
+
+          <div class="detail-actions-stack">
+            <!-- BOUTON COMMANDER DIRECTEMENT -->
+            <button type="button" class="btn btn-primary btn-lg detail-order-btn" id="detailOrderNowBtn">
+              <span>Commander cet article (Payer 10 %)</span>
+            </button>
+
+            <!-- BOUTON CONTACTEZ-MOI SUR WHATSAPP DIRECTEMENT DANS L'ANNONCE -->
+            <a href="#" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg" id="detailWhatsappBtn">
+              <span>💬 Contactez-moi sur WhatsApp (77 453 22 55)</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE 1 : FORMULAIRE DE COMMANDE MONDIALE + 10 % (WAVE / OM / CARTE) -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="orderModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">🔒 COMMANDE SÉCURISÉE &amp; LIVRAISON MONDIALE</span>
+          <h3 id="orderModalTitle">Commander cet article</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeOrderModalBtn" aria-label="Fermer">&times;</button>
+      </div>
+
+      <!-- Étape 1 : Formulaire de saisie client -->
+      <form id="orderForm" class="modal-body">
+        <input type="hidden" id="orderProductId" />
+
+        <!-- Aperçu de l'article choisi -->
+        <div class="order-product-summary">
+          <img id="orderProductImage" src="" alt="" class="order-summary-img" />
+          <div class="order-summary-details">
+            <h4 id="orderProductName">Nom de l'article</h4>
+            <div class="order-price-row">
+              <strong class="price-total" id="orderProductPrice">0 FCFA</strong>
+              <span class="price-gnf-badge" id="orderProductPriceGnf">🇬🇳 0 GNF</span>
+              <span class="price-intl-badge" id="orderProductPriceIntl"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Choix de la couleur -->
+        <div class="form-group" id="orderColorGroup">
+          <label class="form-label">1. Choisissez la couleur souhaitée <span class="required-star">*</span></label>
+          <div class="color-Choice-pills" id="orderColorOptions"></div>
+        </div>
+
+        <!-- Informations du client -->
+        <div class="form-row-grid">
+          <div class="form-group">
+            <label for="customerFullName" class="form-label">2. Votre nom complet <span class="required-star">*</span></label>
+            <input
+              type="text"
+              id="customerFullName"
+              class="form-input"
+              placeholder="Ex : Mamadou Aliou Barry"
+              required
+              maxlength="100"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="customerPhone" class="form-label">3. Téléphone (avec indicatif) <span class="required-star">*</span></label>
+            <input
+              type="tel"
+              id="customerPhone"
+              class="form-input"
+              placeholder="Ex : +224 622... / +221 77... / +1..."
+              required
+              maxlength="30"
+              autocomplete="tel"
+            />
+          </div>
+        </div>
+
+        <!-- Position & Adresse de livraison dans le monde -->
+        <div class="location-box">
+          <div class="location-box-header">
+            <label for="customerCountry" class="form-label" style="margin-bottom:0;">4. Votre pays &amp; position de livraison <span class="required-star">*</span></label>
+            <button type="button" class="btn-detect-gps" id="detectLocationBtn">
+              📍 Détecter ma position
+            </button>
+          </div>
+
+          <div class="form-row-grid mt-2">
+            <div class="form-group" style="margin-bottom:0;">
+              <select id="customerCountry" class="form-input" required>
+                <option value="Sénégal">🇸🇳 Sénégal (FCFA)</option>
+                <option value="Guinée">🇬🇳 Guinée — Conakry (Franc Guinéen GNF)</option>
+                <option value="États-Unis (USA)">🇺🇸 États-Unis (USA — $ USD)</option>
+                <option value="France">🇫🇷 France (€ EUR)</option>
+                <option value="Canada">🇨🇦 Canada ($ CAD)</option>
+                <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire (FCFA)</option>
+                <option value="Mali">🇲🇱 Mali (FCFA)</option>
+                <option value="Belgique">🇧🇪 Belgique (€ EUR)</option>
+                <option value="Espagne">🇪🇸 Espagne (€ EUR)</option>
+                <option value="Italie">🇮🇹 Italie (€ EUR)</option>
+                <option value="Royaume-Uni (UK)">🇬🇧 Royaume-Uni (UK)</option>
+                <option value="Allemagne">🇩🇪 Allemagne (€ EUR)</option>
+                <option value="Maroc">🇲🇦 Maroc</option>
+                <option value="Gabon">🇬🇦 Gabon</option>
+                <option value="Autre pays (Monde)">🌍 Autre pays (Monde)</option>
+              </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom:0;">
+              <input
+                type="text"
+                id="customerAddress"
+                class="form-input"
+                placeholder="Ville, Quartier, État ou Adresse exacte *"
+                required
+                maxlength="160"
+              />
+            </div>
+          </div>
+          <p class="gps-status-note hidden" id="gpsStatusNote"></p>
+        </div>
+
+        <!-- Calculateur automatique des 10 % (FCFA + GNF + USD/EUR) -->
+        <div class="deposit-calculator-box">
+          <div class="deposit-calc-header">
+            <span class="wave-badge">5. Calcul automatique des 10 % d'acompte</span>
+            <span class="deposit-calc-percent">Destination : Wave +221 77 453 22 55</span>
+          </div>
+
+          <div class="deposit-breakdown">
+            <div class="breakdown-line">
+              <span>Prix total (FCFA / Franc Guinéen GNF)</span>
+              <strong id="calcFullPrice">0 FCFA</strong>
+            </div>
+            <div class="breakdown-line highlight-deposit">
+              <span>Acompte 10 % à payer maintenant</span>
+              <div style="text-align:right;">
+                <strong id="calcDepositAmount">0 FCFA</strong>
+                <div class="deposit-gnf-sub" id="calcDepositGnfSub">🇬🇳 0 GNF</div>
+              </div>
+            </div>
+            <div class="breakdown-line muted-line">
+              <span>Reste à payer à la livraison (90 %)</span>
+              <span id="calcRemainingAmount">0 FCFA</span>
+            </div>
+          </div>
+
+          <!-- Sélection du mode de paiement -->
+          <label class="form-label">Choisissez votre moyen de paiement (crédité sur notre Wave 77 453 22 55) :</label>
+          <div class="payment-selector-tabs" id="paymentMethodTabs">
+            <button type="button" class="pay-tab-btn active" data-pay-method="Wave">
+              <span class="pay-dot wave-dot"></span>
+              <strong>Wave</strong>
+            </button>
+            <button type="button" class="pay-tab-btn" data-pay-method="Orange Money (SN / Guinée GNF)">
+              <span class="pay-dot om-dot"></span>
+              <strong>Orange Money (SN/GN)</strong>
+            </button>
+            <button type="button" class="pay-tab-btn" data-pay-method="Carte Bancaire → Wave">
+              <span>💳</span>
+              <strong>Carte → Wave</strong>
+            </button>
+          </div>
+
+          <!-- Panneau Wave / Orange Money (Sénégal & Guinée GNF) -->
+          <div id="mobileMoneyInstructions" class="wave-payment-instructions">
+            <div class="wave-number-row">
+              <div>
+                <span class="wave-label" id="mobileMoneyLabel">Envoyez l'acompte de 10 % (<strong id="instructionDepositText">0 FCFA</strong>) au :</span>
+                <div class="wave-phone-big">+221 77 453 22 55</div>
+                <span class="intl-transfer-tip" id="mobileMoneyConversionTip">
+                  🇸🇳 <strong>Sénégal</strong> : transfert direct Wave ou Orange Money au <strong>77 453 22 55</strong>.<br/>
+                  🇬🇳 <strong>Guinée (GNF)</strong> : dans votre application Orange Money (ou <strong>#144#</strong>), choisissez <em>Transfert International → Sénégal</em> vers le <strong>+221 77 453 22 55</strong> (vos GNF sont convertis automatiquement en FCFA).
+                </span>
+              </div>
+              <button type="button" class="btn btn-copy-wave" id="copyWaveModalBtn">
+                <span>Copier</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Panneau Solution 1 : Carte Bancaire convertie directement sur votre Wave +221 77 453 22 55 -->
+          <div id="cardPaymentPanel" class="card-payment-panel hidden">
+            <div class="card-panel-header">
+              <span>💳 Paiement par Carte Bancaire → Reçu directement sur notre Wave</span>
+            </div>
+            <div class="card-to-wave-explainer">
+              <strong>Étapes simples (Conversion instantanée vers notre Wave +221 77 453 22 55) :</strong>
+              <ol style="padding-left: 18px; margin-top: 6px; display:flex; flex-direction:column; gap:4px;">
+                <li>Ouvrez <strong>Sendwave</strong>, <strong>TapTap Send</strong> ou <strong>Remitly</strong> sur votre téléphone.</li>
+                <li>Choisissez le pays <strong>Sénégal 🇸🇳</strong> et le mode de réception <strong>Wave Mobile Money</strong>.</li>
+                <li>Entrez le bénéficiaire : <strong>Mamadou Aliou Barry</strong> — Numéro : <strong>+221 77 453 22 55</strong>.</li>
+                <li>Payez les 10 % (<strong id="cardSolution1Amount">0 FCFA</strong>) avec votre <strong>Carte Bancaire (Visa / Mastercard)</strong> : l'argent est converti automatiquement et arrive immédiatement sur notre Wave !</li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Champ anti-fraude : Référence de transaction -->
+          <div class="form-group mt-2" style="margin-bottom:0;">
+            <label for="paymentReferenceInput" class="form-label">
+              Référence du transfert ou Nom de l'expéditeur (Sécurité anti-arnaque) <span class="required-star">*</span>
+            </label>
+            <input
+              type="text"
+              id="paymentReferenceInput"
+              class="form-input"
+              placeholder="Ex : ID transaction Wave / Orange Money / Sendwave / TapTap Send"
+              required
+              maxlength="60"
+            />
+          </div>
+        </div>
+
+        <label class="checkbox-confirm">
+          <input type="checkbox" id="confirmWaveDeposit" required />
+          <span>Je confirme le paiement de l'acompte de 10 % (<strong id="checkboxDepositAmount">0 FCFA</strong>) vers le <strong>+221 77 453 22 55</strong>.</span>
+        </label>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="cancelOrderBtn">Annuler</button>
+          <button type="submit" class="btn btn-primary btn-submit-order">
+            <span>Valider ma commande</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Étape 2 : Confirmation de commande réussie -->
+      <div id="orderSuccessView" class="modal-body order-success-view hidden">
+        <div class="success-check-circle">✓</div>
+        <h3>Commande confirmée &amp; Article réservé !</h3>
+        <p class="success-desc">
+          Merci <strong id="successCustomerName"></strong> ! Votre article <strong id="successProductName"></strong> a été <strong>retiré des articles publiés</strong>.
+        </p>
+
+        <div class="receipt-card" id="receiptCard">
+          <div class="receipt-row">
+            <span>Client :</span>
+            <strong id="receiptClient"></strong>
+          </div>
+          <div class="receipt-row">
+            <span>Destination de livraison :</span>
+            <strong id="receiptLocation"></strong>
+          </div>
+          <div class="receipt-row">
+            <span>Article réservé :</span>
+            <strong id="receiptItem"></strong>
+          </div>
+          <div class="receipt-row">
+            <span>Couleur choisie :</span>
+            <strong id="receiptColor"></strong>
+          </div>
+          <div class="receipt-row">
+            <span>Mode de paiement &amp; Réf :</span>
+            <strong id="receiptMethod"></strong>
+          </div>
+          <div class="receipt-row receipt-highlight">
+            <span>Acompte 10 % payé (+221 77 453 22 55) :</span>
+            <strong id="receiptDeposit"></strong>
+          </div>
+          <div class="receipt-row">
+            <span>Reste à payer (90 %) :</span>
+            <strong id="receiptRemaining"></strong>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <a href="#" target="_blank" rel="noopener" id="whatsappConfirmLink" class="btn btn-whatsapp">
+            <span>📲 Envoyer mon reçu de commande sur WhatsApp (+221 77 453 22 55)</span>
+          </a>
+          <button type="button" class="btn btn-secondary" id="closeSuccessModalBtn">Retourner à la boutique</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE 2 : CONNEXION ADMINISTRATEUR HAUTE SÉCURITÉ                    -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="loginModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">🔒 SÉCURITÉ ANTI-PIRATAGE</span>
+          <h3 id="loginModalTitle">Accès Administrateur</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeLoginModalBtn" aria-label="Fermer">&times;</button>
+      </div>
+
+      <form id="loginForm" class="modal-body">
+        <p class="modal-helper-text">
+          Accès strictement protégé et réservé à l'administrateur de <strong>Barry Aliou Shop</strong>.
+        </p>
+
+        <div class="form-group">
+          <label for="adminEmailInput" class="form-label">Adresse email administrateur <span class="required-star">*</span></label>
+          <input
+            type="email"
+            id="adminEmailInput"
+            class="form-input"
+            placeholder="mamadoualioubarry1871@gmail.com"
+            required
+            autocomplete="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="adminPinInput" class="form-label">Code PIN de sécurité Admin <span class="required-star">*</span></label>
+          <input
+            type="password"
+            id="adminPinInput"
+            class="form-input"
+            placeholder="Code PIN (Par défaut : 1871)"
+            required
+            maxlength="20"
+          />
+          <span class="field-hint" style="display:block; margin-top:4px;">Code PIN initial : <strong>1871</strong> (modifiable dans votre tableau de bord).</span>
+        </div>
+
+        <p class="form-error hidden" id="loginErrorMsg">
+          Identifiants incorrects. Accès refusé.
+        </p>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="cancelLoginBtn">Annuler</button>
+          <button type="submit" class="btn btn-primary">Connexion sécurisée</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE 3 : AJOUTER / MODIFIER UN ARTICLE (ADMINISTRATEUR)             -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="productModalBackdrop" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div>
+          <span class="modal-eyebrow">GESTION DU CATALOGUE — BARRY ALIOU SHOP</span>
+          <h3 id="productModalTitle">Ajouter un nouvel article</h3>
+        </div>
+        <button type="button" class="modal-close-btn" id="closeProductModalBtn" aria-label="Fermer">&times;</button>
+      </div>
+
+      <form id="productForm" class="modal-body">
+        <input type="hidden" id="editProductId" />
+
+        <div class="form-group">
+          <label for="productNameInput" class="form-label">Nom de l'article <span class="required-star">*</span></label>
+          <input
+            type="text"
+            id="productNameInput"
+            class="form-input"
+            placeholder="Ex : Ensemble Costume sur Mesure / Robe de Soirée Soie / Sneakers Cuir"
+            required
+            maxlength="120"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="productPriceInput" class="form-label">Prix de l'article (en FCFA) <span class="required-star">*</span></label>
+          <div class="price-input-wrapper">
+            <input
+              type="number"
+              id="productPriceInput"
+              class="form-input"
+              placeholder="Ex : 25000"
+              min="100"
+              step="50"
+              required
+            />
+            <span class="currency-suffix">FCFA</span>
+          </div>
+          <div class="live-deposit-preview" id="adminLiveDepositPreview">
+            Prix en GNF &amp; Acompte 10 % calculés automatiquement
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Photo de l'annonce <span class="required-star">*</span></label>
+          <div class="photo-upload-container">
+            <div class="photo-dropzone" id="photoDropzone">
+              <input type="file" id="productPhotoFile" accept="image/*" class="file-input-hidden" />
+              <div id="photoUploadPlaceholder" class="upload-placeholder">
+                <strong>Cliquez pour choisir une photo depuis votre téléphone ou ordinateur</strong>
+                <span>JPG, PNG, WEBP — ou collez un lien d'image ci-dessous</span>
+              </div>
+              <div id="photoPreviewWrapper" class="photo-preview-wrapper hidden">
+                <img id="productPhotoPreview" src="" alt="Aperçu de la photo" />
+                <button type="button" class="btn-change-photo" id="changePhotoBtn">Changer la photo</button>
+              </div>
+            </div>
+            <input
+              type="url"
+              id="productPhotoUrlInput"
+              class="form-input mt-2"
+              placeholder="Ou collez directement l'adresse (URL) d'une photo..."
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Différentes couleurs disponibles <span class="required-star">*</span></label>
+          <p class="field-hint">Cliquez sur les couleurs existantes pour cet article ou ajoutez une autre couleur personnalisée :</p>
+
+          <div class="preset-colors-grid" id="presetColorsContainer"></div>
+
+          <div class="custom-color-adder">
+            <input type="color" id="customColorHex" value="#1e3a8a" title="Choisir la teinte" class="color-picker-native" />
+            <input type="text" id="customColorName" class="form-input" placeholder="Autre couleur (ex: Bleu Roi, Bordeaux, Kaki...)" maxlength="40" />
+            <button type="button" class="btn btn-secondary btn-sm" id="addCustomColorBtn">+ Ajouter</button>
+          </div>
+
+          <div class="selected-colors-box">
+            <span class="selected-colors-label">Couleurs de l'annonce :</span>
+            <div class="selected-colors-list" id="selectedColorsList"></div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-ghost" id="cancelProductModalBtn">Annuler</button>
+          <button type="submit" class="btn btn-primary" id="saveProductSubmitBtn">Publier l'article</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast-notification hidden" id="toastNotification">
+    <span id="toastMessage">Action effectuée</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

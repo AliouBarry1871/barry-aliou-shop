@@ -1,0 +1,12 @@
+{
+  "name": "barry-aliou-shop",
+  "version": "1.0.0",
+  "description": "Boutique internationale de vêtements et chaussures Barry Aliou Shop avec base de données SQLite et paiement 10% Wave / Orange Money / Carte",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  }
+}
