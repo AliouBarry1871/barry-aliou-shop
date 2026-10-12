@@ -136,7 +136,7 @@ let state = {
   isAdmin: false,
   shopName: 'Barry Aliou Shop',
   gnfRate: DEFAULT_GNF_RATE,
-  displayCurrency: 'ALL',
+  displayCurrency: 'FCFA',
   searchQuery: '',
   activeDetailProduct: null,
   activeOrderProduct: null,
@@ -175,14 +175,14 @@ function formatIntlEquivalent(amountFCFA) {
 
 function formatPrimaryPriceByCurrency(amountFCFA) {
   const cur = state.displayCurrency;
-  if (cur === 'GNF') return `🇬🇳 ${formatGNF(amountFCFA)}`;
+  if (cur === 'GNF') return formatGNF(amountFCFA);
   if (cur === 'USD') {
     const usd = Math.max(1, Math.round((Number(amountFCFA) || 0) / RATE_USD));
-    return `${usd} $ USD (${formatFCFA(amountFCFA)})`;
+    return `${usd} $ USD`;
   }
   if (cur === 'EUR') {
     const eur = Math.max(1, Math.round((Number(amountFCFA) || 0) / RATE_EUR));
-    return `${eur} € EUR (${formatFCFA(amountFCFA)})`;
+    return `${eur} € EUR`;
   }
   return formatFCFA(amountFCFA);
 }
@@ -241,7 +241,7 @@ function loadStateFromStorage() {
     }
 
     const savedCurrency = localStorage.getItem(STORAGE_KEYS.DISPLAY_CURRENCY);
-    if (savedCurrency) {
+    if (savedCurrency && ['FCFA', 'GNF', 'USD', 'EUR'].includes(savedCurrency)) {
       state.displayCurrency = savedCurrency;
       const sel = document.getElementById('currencySelector');
       if (sel) sel.value = savedCurrency;
@@ -643,19 +643,20 @@ function renderPublicCatalogue() {
 
   grid.innerHTML = filteredProducts
     .map(product => {
-      const deposit = calculateTenPercent(product.price);
       const isFav = isProductFavorited(product.id);
+      const colorsList = product.colors || [];
 
-      const colorsHtml = (product.colors || [])
+      const colorDotsHtml = colorsList
         .map(
-          c => `
-          <span class="color-chip">
-            <span class="color-dot" style="background-color: ${escapeHtml(c.hex)};"></span>
-            ${escapeHtml(c.name)}
-          </span>
-        `
+          c =>
+            `<span class="color-dot-clean" style="background-color: ${escapeHtml(c.hex)};" title="${escapeHtml(c.name)}"></span>`
         )
         .join('');
+
+      const colorCountLabel =
+        colorsList.length > 1
+          ? `${colorsList.length} couleurs`
+          : `${colorsList.length} couleur`;
 
       const adminOverlayBtns = state.isAdmin
         ? `
@@ -672,11 +673,8 @@ function renderPublicCatalogue() {
 
       return `
         <article class="product-card" data-product-id="${escapeHtml(product.id)}">
-          <div class="product-image-wrap" data-action="view-ad" data-id="${escapeHtml(product.id)}" title="Cliquer pour voir l'annonce complète">
+          <div class="product-image-wrap" data-action="view-ad" data-id="${escapeHtml(product.id)}" title="Voir l'annonce en grand">
             <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy" />
-            <div class="deposit-badge-overlay">
-              10 % : <strong>${formatFCFA(deposit)}</strong> (${formatGNF(deposit)})
-            </div>
             ${adminOverlayBtns}
             <button
               type="button"
@@ -685,37 +683,27 @@ function renderPublicCatalogue() {
               data-id="${escapeHtml(product.id)}"
               title="${isFav ? 'Retirer des favoris' : 'Ajouter en favoris'}"
             >
-              <span>${isFav ? '❤️ En favoris' : '🤍 Favoris'}</span>
+              <span>${isFav ? '❤️' : '🤍'}</span>
             </button>
           </div>
 
           <div class="product-card-body">
-            <h3 class="product-title" data-action="view-ad" data-id="${escapeHtml(product.id)}">${escapeHtml(product.name)}</h3>
-
-            <div class="product-price-block">
-              <div>
-                <span class="product-price">${formatPrimaryPriceByCurrency(product.price)}</span>
-                <div>
-                  <span class="product-gnf-price">🇬🇳 ${formatGNF(product.price)}</span>
-                </div>
-                <span class="product-intl-sub">${formatIntlEquivalent(product.price)}</span>
-              </div>
-              <span class="product-deposit-hint">10 % = ${formatFCFA(deposit)}</span>
+            <div class="product-top-row">
+              <h3 class="product-title" data-action="view-ad" data-id="${escapeHtml(product.id)}">${escapeHtml(product.name)}</h3>
+              <span class="product-price">${formatPrimaryPriceByCurrency(product.price)}</span>
             </div>
 
-            <div class="product-colors-section">
-              <span class="colors-label">Couleurs disponibles (${(product.colors || []).length}) :</span>
-              <div class="color-swatches-row">
-                ${colorsHtml}
-              </div>
+            <div class="card-color-dots">
+              ${colorDotsHtml}
+              <span class="color-count-text">${colorCountLabel}</span>
             </div>
 
             <div class="product-card-footer">
-              <button type="button" class="btn btn-secondary btn-view-ad" data-action="view-ad" data-id="${escapeHtml(product.id)}">
-                <span>👁️ Voir l'annonce</span>
+              <button type="button" class="btn-card-action btn-view" data-action="view-ad" data-id="${escapeHtml(product.id)}">
+                Voir l'annonce
               </button>
-              <button type="button" class="btn btn-primary btn-order-card" data-action="order" data-id="${escapeHtml(product.id)}">
-                <span>Commander</span>
+              <button type="button" class="btn-card-action btn-order" data-action="order" data-id="${escapeHtml(product.id)}">
+                Commander
               </button>
             </div>
           </div>
