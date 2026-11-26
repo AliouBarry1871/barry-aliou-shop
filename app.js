@@ -1,9 +1,9 @@
 /**
- * STUDIO ARCHIVE — 2026 Interactive Fashion Showroom
- * Showroom interactif de mode avec tringle 3D physique, bascule avant/arrière,
- * sélecteur de variantes par miniatures, gestion panier & acompte 10 %
- * Numéro officiel Wave / Orange Money : +221 77 453 22 55
- * Email Admin : mamadoualioubarry1871@gmail.com
+ * BARRY ALIOU SHOP — Boutique Officielle & Showroom 3D Interactif 2026
+ * Vêtements, Sneakers & Accessoires haut de gamme
+ * Deux vues complètes par article : Face Avant & Vue Arrière (Pile & Face)
+ * Calcul automatique des 10 % d'acompte • Wave & Orange Money : +221 77 453 22 55
+ * Email Administrateur : mamadoualioubarry1871@gmail.com
  */
 
 const ADMIN_EMAIL = 'mamadoualioubarry1871@gmail.com';
@@ -13,133 +13,151 @@ const MERCHANT_PHONE_INTL = '+221 77 453 22 55';
 const MERCHANT_WHATSAPP = '221774532255';
 
 // Taux de conversion
-const DEFAULT_GNF_RATE = 14.3; // 1 FCFA ≈ 14.3 GNF
+const DEFAULT_GNF_RATE = 14.3; // 1 FCFA ≈ 14.3 GNF (Franc Guinéen)
 const RATE_EUR = 655.957;      // 1 EUR ≈ 655.957 FCFA
 const RATE_USD = 605.0;        // 1 USD ≈ 605 FCFA
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'studio_archive_products_2026_v1',
-  ORDERS: 'studio_archive_orders_2026_v1',
-  ADMIN_SESSION: 'studio_archive_admin_session_v1',
-  ADMIN_PIN: 'studio_archive_admin_pin_v1',
-  LOGIN_ATTEMPTS: 'studio_archive_login_attempts_v1',
-  SHOP_NAME: 'studio_archive_shop_name_v1',
-  CUSTOMERS: 'studio_archive_customers_v1',
-  CURRENT_CUSTOMER: 'studio_archive_current_customer_v1',
-  GNF_RATE: 'studio_archive_gnf_rate_v1',
-  DISPLAY_CURRENCY: 'studio_archive_display_currency_v1',
-  CART: 'studio_archive_cart_2026_v1',
-  AUDIO_ENABLED: 'studio_archive_audio_enabled_v1'
+  PRODUCTS: 'barry_aliou_products_v3',
+  ORDERS: 'barry_aliou_orders_v3',
+  ADMIN_SESSION: 'barry_aliou_admin_session_v3',
+  ADMIN_PIN: 'barry_aliou_admin_pin_v3',
+  LOGIN_ATTEMPTS: 'barry_aliou_login_attempts_v3',
+  SHOP_NAME: 'barry_aliou_shop_name_v3',
+  CUSTOMERS: 'barry_aliou_customers_v3',
+  CURRENT_CUSTOMER: 'barry_aliou_current_customer_v3',
+  GNF_RATE: 'barry_aliou_gnf_rate_v3',
+  DISPLAY_CURRENCY: 'barry_aliou_display_currency_v3',
+  CART: 'barry_aliou_cart_v3',
+  AUDIO_ENABLED: 'barry_aliou_audio_enabled_v3'
 };
 
 const INITIAL_PRODUCTS = [
   {
     id: 'prod-1',
-    name: 'UNKNOWN C DOVE VEST',
+    name: 'Gilet Matelassé Colombe',
+    category: 'veste',
     price: 45000,
     status: 'published',
     createdAt: Date.now() - 3600000 * 24,
     colors: [
       {
-        name: 'Orange',
+        name: 'Orange Vif',
         hex: '#F95700',
         front: 'assets/vest-orange-front.jpg',
         back: 'assets/vest-orange-back.jpg'
       },
       {
-        name: 'Noir',
+        name: 'Noir Intense',
         hex: '#141413',
         front: 'assets/vest-black-front.jpg',
         back: 'assets/vest-black-back.jpg'
       },
       {
-        name: 'Crème',
+        name: 'Crème Écru',
         hex: '#E8E3D9',
         front: 'assets/vest-cream-front.jpg',
         back: 'assets/vest-cream-back.jpg'
       }
     ],
-    defaultColor: 'Orange'
+    defaultColor: 'Orange Vif',
+    image: 'assets/vest-orange-front.jpg',
+    imageBack: 'assets/vest-orange-back.jpg'
   },
   {
     id: 'prod-2',
-    name: 'UNKNOWN WORKWEAR BIKER JACKET',
+    name: 'Veste Biker en Toile Canvas & Velours',
+    category: 'veste',
     price: 65000,
     status: 'published',
     createdAt: Date.now() - 3600000 * 20,
     colors: [
       {
-        name: 'Charcoal & Olive',
+        name: 'Kaki & Charcoal',
         hex: '#373D3F',
         front: 'assets/jacket-front.jpg',
         back: 'assets/jacket-back.jpg'
       }
     ],
-    defaultColor: 'Charcoal & Olive'
+    defaultColor: 'Kaki & Charcoal',
+    image: 'assets/jacket-front.jpg',
+    imageBack: 'assets/jacket-back.jpg'
   },
   {
     id: 'prod-3',
-    name: 'UNKNOWN HEAVYWEIGHT HOODIE',
+    name: 'Sweat à Capuche Boxy Coton Épais',
+    category: 'vetement',
     price: 38000,
     status: 'published',
     createdAt: Date.now() - 3600000 * 16,
     colors: [
       {
-        name: 'Washed Charcoal',
+        name: 'Gris Anthracite Délavé',
         hex: '#2B2B2B',
         front: 'assets/hoodie-front.jpg',
         back: 'assets/hoodie-back.jpg'
       }
     ],
-    defaultColor: 'Washed Charcoal'
+    defaultColor: 'Gris Anthracite Délavé',
+    image: 'assets/hoodie-front.jpg',
+    imageBack: 'assets/hoodie-back.jpg'
   },
   {
     id: 'prod-4',
-    name: 'UNKNOWN STRIPED KNIT ZIP SWEATER',
+    name: 'Pull Zippé en Maille Côtelée Rayée',
+    category: 'vetement',
     price: 42000,
     status: 'published',
     createdAt: Date.now() - 3600000 * 12,
     colors: [
       {
-        name: 'Navy & White',
+        name: 'Bleu Marine & Blanc',
         hex: '#1D2A44',
         front: 'assets/knit-front.jpg',
         back: 'assets/knit-back.jpg'
       }
     ],
-    defaultColor: 'Navy & White'
+    defaultColor: 'Bleu Marine & Blanc',
+    image: 'assets/knit-front.jpg',
+    imageBack: 'assets/knit-back.jpg'
   },
   {
     id: 'prod-5',
-    name: 'UNKNOWN OVERSIZED BOXY TEE',
+    name: 'T-Shirt Coupe Boxy Coton Lourd',
+    category: 'vetement',
     price: 22000,
     status: 'published',
     createdAt: Date.now() - 3600000 * 8,
     colors: [
       {
-        name: 'Vintage White',
+        name: 'Blanc Vintage',
         hex: '#F0EFEA',
         front: 'assets/tee-front.jpg',
         back: 'assets/tee-back.jpg'
       }
     ],
-    defaultColor: 'Vintage White'
+    defaultColor: 'Blanc Vintage',
+    image: 'assets/tee-front.jpg',
+    imageBack: 'assets/tee-back.jpg'
   },
   {
     id: 'prod-6',
-    name: 'RETRO STREETWEAR SNEAKERS',
+    name: 'Sneakers Rétro Streetwear Cuir Premium',
+    category: 'chaussure',
     price: 55000,
     status: 'published',
     createdAt: Date.now() - 3600000 * 4,
     colors: [
       {
-        name: 'White & Black',
+        name: 'Blanc & Noir',
         hex: '#FFFFFF',
-        front: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=85',
-        back: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=80'
+        front: 'assets/sneakers-front.jpg',
+        back: 'assets/sneakers-back.jpg'
       }
     ],
-    defaultColor: 'White & Black'
+    defaultColor: 'Blanc & Noir',
+    image: 'assets/sneakers-front.jpg',
+    imageBack: 'assets/sneakers-back.jpg'
   }
 ];
 
@@ -151,16 +169,17 @@ let state = {
   currentCustomer: null,
   pendingFavoriteProductId: null,
   isAdmin: false,
-  shopName: 'UNKNOWN',
+  shopName: 'Barry Aliou Shop',
   gnfRate: DEFAULT_GNF_RATE,
   displayCurrency: 'FCFA',
-  viewMode: 'showroom', // 'showroom' | 'grid'
+  activeCategoryFilter: 'all',
   activeProduct: null,
   activeColor: null,
   isFlipped: false,
   audioEnabled: true,
   editingColors: [],
-  uploadedPhotoDataUrl: ''
+  uploadedFrontDataUrl: '',
+  uploadedBackDataUrl: ''
 };
 
 // ============================================================================
@@ -185,7 +204,6 @@ function playSound(type) {
     const now = ctx.currentTime;
 
     if (type === 'sway') {
-      // Bruit feutré de cintre en métal qui glisse
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
@@ -198,7 +216,6 @@ function playSound(type) {
       osc.start(now);
       osc.stop(now + 0.12);
     } else if (type === 'flip') {
-      // Son fluide de bascule avant/arrière
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'triangle';
@@ -212,7 +229,6 @@ function playSound(type) {
       osc.start(now);
       osc.stop(now + 0.22);
     } else if (type === 'click') {
-      // Clic tactile sélection variante
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
       osc.type = 'sine';
@@ -224,7 +240,6 @@ function playSound(type) {
       osc.start(now);
       osc.stop(now + 0.06);
     } else if (type === 'cart') {
-      // Chime d'ajout au panier
       [523.25, 659.25, 783.99].forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -269,7 +284,7 @@ function formatIntlEquivalent(amountFCFA) {
 
 function formatPrimaryPriceByCurrency(amountFCFA) {
   const cur = state.displayCurrency;
-  if (cur === 'GNF') return formatGNF(amountFCFA);
+  if (cur === 'GNF') return `🇬🇳 ${formatGNF(amountFCFA)}`;
   if (cur === 'USD') {
     const usd = Math.max(1, Math.round((Number(amountFCFA) || 0) / RATE_USD));
     return `$${usd} USD`;
@@ -352,8 +367,8 @@ function loadStateFromStorage() {
       }
     }
 
-    const savedShopName = localStorage.getItem(STORAGE_KEYS.SHOP_NAME);
-    if (savedShopName) state.shopName = savedShopName;
+    state.shopName = 'Barry Aliou Shop';
+    localStorage.setItem(STORAGE_KEYS.SHOP_NAME, 'Barry Aliou Shop');
 
     const savedAudio = localStorage.getItem(STORAGE_KEYS.AUDIO_ENABLED);
     if (savedAudio !== null) state.audioEnabled = savedAudio === 'true';
@@ -384,14 +399,14 @@ function updateCartBadge() {
 // ============================================================================
 // VUE 1 : TRINGLE INTERACTIVE & SIMULATION PHYSIQUE DE BALANCEMENT (SWAY)
 // ============================================================================
-const hangersPhysics = []; // Stores physics state for each garment on the rail
+const hangersPhysics = [];
 
 function renderRailShowroom() {
   const container = document.getElementById('hangersContainer');
   if (!container) return;
 
   const published = state.products.filter(p => p.status === 'published');
-  hangersPhysics.length = 0; // reset
+  hangersPhysics.length = 0;
 
   container.innerHTML = published
     .map((prod, index) => {
@@ -401,7 +416,6 @@ function renderRailShowroom() {
       };
       const frontImg = activeColor.front || prod.image || '';
 
-      // Initialize physics data for this hanger
       hangersPhysics.push({
         id: prod.id,
         currentAngle: 0,
@@ -414,7 +428,7 @@ function renderRailShowroom() {
       });
 
       return `
-        <article class="hanger-item" data-product-id="${escapeHtml(prod.id)}" data-index="${index}" title="Cliquer pour voir les détails">
+        <article class="hanger-item" data-product-id="${escapeHtml(prod.id)}" data-index="${index}" title="Cliquer pour examiner la face et le dos">
           <!-- Crochet du cintre sur la tringle -->
           <div class="hanger-hook-visual">
             <svg viewBox="0 0 24 28" fill="none">
@@ -423,12 +437,12 @@ function renderRailShowroom() {
             </svg>
           </div>
 
-          <!-- Visuel du vêtement suspendu -->
+          <!-- Visuel suspendu -->
           <div class="hanger-garment-frame">
             <img class="hanger-garment-img" src="${escapeHtml(frontImg)}" alt="${escapeHtml(prod.name)}" loading="lazy" />
           </div>
 
-          <!-- Ombre portée douce sur le fond clair -->
+          <!-- Ombre portée douce -->
           <div class="hanger-ground-shadow"></div>
         </article>
       `;
@@ -443,14 +457,13 @@ let lastMouseTime = null;
 let mouseVelocityX = 0;
 
 function initRailInteractions() {
-  const viewport = document.getElementById('showroomViewport');
+  const viewport = document.getElementById('showroomSection');
   const tooltip = document.getElementById('railHoverTooltip');
   const tipTitle = document.getElementById('hoverTipTitle');
   const tipPrice = document.getElementById('hoverTipPrice');
 
   if (!viewport) return;
 
-  // Track mouse velocity and calculate sway impulses
   const handlePointerMove = (clientX) => {
     const now = performance.now();
     if (lastMouseX !== null && lastMouseTime !== null) {
@@ -460,7 +473,6 @@ function initRailInteractions() {
     lastMouseX = clientX;
     lastMouseTime = now;
 
-    // Apply physics impulse to hangers based on distance from pointer
     const items = document.querySelectorAll('.hanger-item');
     items.forEach((el, idx) => {
       const rect = el.getBoundingClientRect();
@@ -472,7 +484,6 @@ function initRailInteractions() {
         const impulse = mouseVelocityX * 3.5 * proximity;
         if (hangersPhysics[idx]) {
           hangersPhysics[idx].velocity += impulse;
-          // Clamp velocity
           hangersPhysics[idx].velocity = Math.max(-18, Math.min(18, hangersPhysics[idx].velocity));
         }
       }
@@ -480,18 +491,17 @@ function initRailInteractions() {
   };
 
   viewport.addEventListener('mousemove', e => {
-    if (state.viewMode !== 'showroom' || state.activeProduct) return;
+    if (state.activeProduct) return;
     handlePointerMove(e.clientX);
   });
 
   viewport.addEventListener('touchmove', e => {
-    if (state.viewMode !== 'showroom' || state.activeProduct) return;
+    if (state.activeProduct) return;
     if (e.touches && e.touches[0]) {
       handlePointerMove(e.touches[0].clientX);
     }
   }, { passive: true });
 
-  // Hover effect over individual items
   const items = document.querySelectorAll('.hanger-item');
   items.forEach((item, idx) => {
     item.addEventListener('mouseenter', () => {
@@ -501,17 +511,14 @@ function initRailInteractions() {
 
       playSound('sway');
 
-      // Lift and highlight
       if (hangersPhysics[idx]) {
         hangersPhysics[idx].targetLift = -10;
         hangersPhysics[idx].targetScale = 1.07;
       }
 
-      // Neighboring items part slightly
       if (hangersPhysics[idx - 1]) hangersPhysics[idx - 1].targetAngle = -4;
       if (hangersPhysics[idx + 1]) hangersPhysics[idx + 1].targetAngle = 4;
 
-      // Show micro-tooltip
       if (tooltip) {
         tipTitle.textContent = prod.name;
         tipPrice.textContent = formatPrimaryPriceByCurrency(prod.price);
@@ -529,7 +536,6 @@ function initRailInteractions() {
       if (tooltip) tooltip.classList.remove('active');
     });
 
-    // CLICK ITEM -> TRANSITION FLUIDE VERS LA VUE PRODUIT DÉTAILLÉE
     item.addEventListener('click', () => {
       const prod = state.products.find(p => p.id === item.dataset.productId);
       if (prod) {
@@ -540,27 +546,23 @@ function initRailInteractions() {
   });
 }
 
-// Continuous requestAnimationFrame physics loop for spring damping
 function startPhysicsLoop() {
   const items = document.querySelectorAll('.hanger-item');
-  const springK = 0.08;   // Spring stiffness
-  const damping = 0.88;   // Natural friction/air drag
+  const springK = 0.08;
+  const damping = 0.88;
 
   items.forEach((el, idx) => {
     const phys = hangersPhysics[idx];
     if (!phys) return;
 
-    // Harmonic spring oscillation towards target angle
     const displacement = phys.currentAngle - phys.targetAngle;
     const force = -springK * displacement;
     phys.velocity = (phys.velocity + force) * damping;
     phys.currentAngle += phys.velocity;
 
-    // Smooth lift & scale lerp
     phys.lift += (phys.targetLift - phys.lift) * 0.2;
     phys.scale += (phys.targetScale - phys.scale) * 0.2;
 
-    // Apply transform
     el.style.transform = `rotate(${phys.currentAngle.toFixed(2)}deg) translateY(${phys.lift.toFixed(1)}px) scale(${phys.scale.toFixed(3)})`;
   });
 
@@ -568,39 +570,36 @@ function startPhysicsLoop() {
 }
 
 // ============================================================================
-// VUE 2 : TRANSITION VERS LA FICHE PRODUIT INTERACTIVE
+// VUE 2 : FICHE PRODUIT INTERACTIVE (DEUX BOUTONS FACE AVANT & VUE ARRIÈRE)
 // ============================================================================
 function openProductFocus(product) {
   state.activeProduct = product;
   state.isFlipped = false;
 
-  // Determine active color variant
   const colors = product.colors && product.colors.length > 0 ? product.colors : [
-    { name: 'Standard', hex: '#141413', front: product.image, back: product.image }
+    { name: 'Standard', hex: '#141413', front: product.image, back: product.imageBack || product.image }
   ];
   state.activeColor = colors[0];
 
-  const viewport = document.getElementById('showroomViewport');
+  const viewport = document.getElementById('showroomSection');
   viewport.classList.add('in-product-view');
+
+  // Remonter en haut pour voir le vêtement centré en 3D
+  viewport.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   playSound('flip');
 
-  // Update text meta
   document.getElementById('focusedProductTitle').textContent = product.name;
   document.getElementById('focusedMainPrice').textContent = formatPrimaryPriceByCurrency(product.price);
   document.getElementById('focusedGnfPrice').textContent = `🇬🇳 ${formatGNF(product.price)}`;
   document.getElementById('focusedIntlPrice').textContent = formatIntlEquivalent(product.price);
 
   const deposit = calculateTenPercent(product.price);
-  document.getElementById('focusedDepositAmount').textContent = `${formatFCFA(deposit)} (${formatGNF(deposit)})`;
+  document.getElementById('focusedDepositAmount').textContent = `${formatFCFA(deposit)} (🇬🇳 ${formatGNF(deposit)})`;
 
-  // Update front and back visuals
   updateFocusImages();
-
-  // Render floating mini-thumbnails for colorways
   renderMiniColorways(colors);
 
-  // Reset Front/Back Switcher
   const flipper = document.getElementById('garmentFlipper');
   flipper.classList.remove('is-flipped');
 
@@ -617,10 +616,10 @@ function updateFocusImages() {
   const backImg = document.getElementById('focusedImgBack');
 
   frontImg.src = state.activeColor.front || state.activeProduct.image;
-  backImg.src = state.activeColor.back || state.activeColor.front || state.activeProduct.image;
+  backImg.src = state.activeColor.back || state.activeProduct.imageBack || state.activeColor.front || state.activeProduct.image;
 }
 
-// Mini-Aperçus / Sélecteur de variantes flottant (Exactement comme dans la vidéo)
+// Sélecteur de couleurs (Mini-aperçus sur cintres)
 function renderMiniColorways(colors) {
   const stack = document.getElementById('variantsMiniStack');
   if (!stack) return;
@@ -644,11 +643,9 @@ function renderMiniColorways(colors) {
         state.activeColor = found;
         playSound('click');
 
-        // Update active class
         stack.querySelectorAll('.variant-mini-card').forEach(c => c.classList.remove('active'));
         card.classList.add('active');
 
-        // Smooth visual update with subtle sway
         const flipper = document.getElementById('garmentFlipper');
         flipper.style.transform = (state.isFlipped ? 'rotateY(180deg) ' : '') + 'scale(0.96)';
         setTimeout(() => {
@@ -661,7 +658,7 @@ function renderMiniColorways(colors) {
 }
 
 function closeProductFocus() {
-  const viewport = document.getElementById('showroomViewport');
+  const viewport = document.getElementById('showroomSection');
   viewport.classList.remove('in-product-view');
   state.activeProduct = null;
   state.activeColor = null;
@@ -669,9 +666,7 @@ function closeProductFocus() {
   playSound('sway');
 }
 
-// ============================================================================
-// BASCULE DE FACE (FRONT / BACK)
-// ============================================================================
+// BASCULE DE FACE : FACE AVANT ET VUE ARRIÈRE (PILE & FACE)
 function toggleGarmentSide(side) {
   const flipper = document.getElementById('garmentFlipper');
   const switchTrack = document.querySelector('.switch-pill-track');
@@ -696,7 +691,104 @@ function toggleGarmentSide(side) {
 }
 
 // ============================================================================
-// PANIER / BAG MANAGEMENT & COMMANDE
+// SECTION 2 : CATALOGUE COMPLET SCROLLABLE EN BAS DE PAGE
+// ============================================================================
+function renderShowcaseGrid() {
+  const grid = document.getElementById('classicProductsGrid');
+  if (!grid) return;
+
+  const published = state.products.filter(p => p.status === 'published');
+  const filter = state.activeCategoryFilter;
+
+  const filtered = published.filter(p => {
+    if (filter === 'all') return true;
+    return p.category === filter;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align:center; padding: 40px; color: var(--text-muted);">
+        <p>Aucun article dans cette catégorie pour le moment.</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filtered
+    .map(p => {
+      const activeColor = (p.colors && p.colors[0]) || { front: p.image, back: p.imageBack || p.image };
+      const frontSrc = activeColor.front || p.image;
+      const backSrc = activeColor.back || p.imageBack || p.image;
+
+      const colorDots = (p.colors || []).map(c => `
+        <span class="showcase-color-dot" style="background-color: ${escapeHtml(c.hex)};" title="${escapeHtml(c.name)}"></span>
+      `).join('');
+
+      return `
+        <article class="showcase-card" data-card-id="${escapeHtml(p.id)}">
+          <div class="showcase-media" data-action="inspect" data-id="${escapeHtml(p.id)}" title="Cliquer pour voir Face & Dos en 3D">
+            <span class="card-face-toggle-badge">Face &amp; Dos 3D</span>
+            <img class="showcase-img" id="cardImg-${p.id}" src="${escapeHtml(frontSrc)}" data-front="${escapeHtml(frontSrc)}" data-back="${escapeHtml(backSrc)}" alt="${escapeHtml(p.name)}" loading="lazy" />
+          </div>
+
+          <div class="showcase-card-body">
+            <div class="showcase-title-row">
+              <h3 class="showcase-title">${escapeHtml(p.name)}</h3>
+              <div class="showcase-price">${formatPrimaryPriceByCurrency(p.price)}</div>
+            </div>
+
+            <div class="showcase-gnf-sub">🇬🇳 ${formatGNF(p.price)}</div>
+
+            <div class="showcase-colors-row">
+              ${colorDots}
+              <span style="font-size:0.75rem; color:var(--text-muted); margin-left:4px;">${(p.colors || []).length} couleur(s)</span>
+            </div>
+
+            <div class="showcase-actions">
+              <button type="button" class="btn-card-inspect" data-action="inspect" data-id="${escapeHtml(p.id)}">
+                Examiner 3D (Face &amp; Dos)
+              </button>
+              <button type="button" class="btn-card-order" data-action="order" data-id="${escapeHtml(p.id)}">
+                Commander
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    })
+    .join('');
+
+  // Hover sur les photos pour faire aperçu dos
+  grid.querySelectorAll('.showcase-media').forEach(media => {
+    const img = media.querySelector('.showcase-img');
+    if (!img) return;
+    const front = img.dataset.front;
+    const back = img.dataset.back;
+    if (back && back !== front) {
+      media.addEventListener('mouseenter', () => { img.src = back; });
+      media.addEventListener('mouseleave', () => { img.src = front; });
+    }
+  });
+
+  // Écouteurs de clics sur les cartes
+  grid.addEventListener('click', e => {
+    const inspectBtn = e.target.closest('[data-action="inspect"]');
+    if (inspectBtn) {
+      const prod = state.products.find(p => p.id === inspectBtn.dataset.id);
+      if (prod) openProductFocus(prod);
+      return;
+    }
+
+    const orderBtn = e.target.closest('[data-action="order"]');
+    if (orderBtn) {
+      const prod = state.products.find(p => p.id === orderBtn.dataset.id);
+      if (prod) openOrderModal(prod);
+    }
+  });
+}
+
+// ============================================================================
+// PANIER / BAG & COMMANDE
 // ============================================================================
 function addToCart(product, color) {
   if (!product) return;
@@ -745,7 +837,7 @@ function renderCartDrawer() {
       <div style="text-align: center; padding: 48px 16px; color: var(--text-muted);">
         <div style="font-size: 2.2rem; margin-bottom: 8px;">🛍️</div>
         <h4>Votre panier est vide</h4>
-        <p style="font-size: 0.85rem; margin-top: 4px;">Sélectionnez un vêtement sur la tringle et ajoutez-le au panier.</p>
+        <p style="font-size: 0.85rem; margin-top: 4px;">Sélectionnez une pièce sur la tringle ou dans le catalogue ci-dessous.</p>
       </div>
     `;
     totalArticlesEl.textContent = '0 FCFA';
@@ -760,7 +852,7 @@ function renderCartDrawer() {
 
   totalArticlesEl.textContent = `${formatPrimaryPriceByCurrency(total)} (${formatGNF(total)})`;
   totalDepositEl.textContent = `${formatFCFA(deposit)} • 🇬🇳 ${formatGNF(deposit)}`;
-  remainingEl.textContent = `${formatFCFA(remaining)} (à payer à réception)`;
+  remainingEl.textContent = `${formatFCFA(remaining)} (à payer à la livraison)`;
 
   container.innerHTML = state.cart
     .map((item, idx) => `
@@ -809,7 +901,6 @@ function openOrderModal(product, presetColor) {
   document.getElementById('depositDueDisplay').textContent = `${formatFCFA(deposit)} (🇬🇳 ${formatGNF(deposit)})`;
   document.getElementById('depositRestDisplay').textContent = formatFCFA(rest);
 
-  // Pré-remplir si le client est connecté
   if (state.currentCustomer) {
     document.getElementById('customerFullName').value = `${state.currentCustomer.firstName} ${state.currentCustomer.lastName}`;
     document.getElementById('customerPhone').value = state.currentCustomer.phone;
@@ -865,7 +956,6 @@ function handleOrderSubmit(e) {
   prod.status = 'ordered';
   saveProducts();
 
-  // Envoyer au serveur Node.js / SQLite
   if (window.location.protocol !== 'file:') {
     fetch('/api/orders', {
       method: 'POST',
@@ -874,29 +964,27 @@ function handleOrderSubmit(e) {
     }).catch(() => {});
   }
 
-  // Préparer lien WhatsApp
   const waMsg = [
     `Bonjour Mamadou Aliou Barry !`,
-    `Je viens de valider ma commande sur le site :`,
+    `Je viens de commander sur Barry Aliou Shop :`,
     `- Article : ${prod.name} (Couleur : ${colorName})`,
-    `- Prix total : ${formatFCFA(prod.price)} (${formatGNF(prod.price)})`,
-    `- Acompte 10 % réglé : ${formatFCFA(deposit)} (Réf : ${paymentRef})`,
+    `- Prix : ${formatFCFA(prod.price)} (${formatGNF(prod.price)})`,
+    `- Acompte 10 % versé : ${formatFCFA(deposit)} (Réf : ${paymentRef})`,
     `- Solde à la livraison : ${formatFCFA(remaining)}`,
     `- Nom : ${fullName}`,
     `- Téléphone : ${phone}`,
-    `- Adresse de livraison : ${address}`
+    `- Adresse : ${address}`
   ].join('\n');
 
   document.getElementById('whatsappConfirmLink').href = `https://wa.me/${MERCHANT_WHATSAPP}?text=${encodeURIComponent(waMsg)}`;
   document.getElementById('orderForm').classList.add('hidden');
   document.getElementById('orderSuccessView').classList.remove('hidden');
 
-  // Retirer du panier si présent
   state.cart = state.cart.filter(item => item.id !== prod.id);
   saveCart();
 
-  // Re-render
   renderRailShowroom();
+  renderShowcaseGrid();
   closeProductFocus();
   showToast("Commande validée ! L'article a été réservé.");
 }
@@ -904,10 +992,6 @@ function handleOrderSubmit(e) {
 // ============================================================================
 // FAVORIS & COMPTE CLIENT
 // ============================================================================
-function isProductFavorited(id) {
-  return state.currentCustomer && (state.currentCustomer.favorites || []).includes(id);
-}
-
 function handleToggleFavorite(productId) {
   if (!state.currentCustomer) {
     state.pendingFavoriteProductId = productId;
@@ -997,7 +1081,7 @@ function handleCustomerRegister(e) {
 }
 
 // ============================================================================
-// ESPACE ADMINISTRATEUR SÉCURISÉ (Code PIN & Email masqués)
+// ESPACE ADMINISTRATEUR SÉCURISÉ & AJOUT D'ARTICLE PILE ET FACE
 // ============================================================================
 function handleAdminLogin(e) {
   e.preventDefault();
@@ -1089,6 +1173,7 @@ function renderAdminInventory() {
         prod.status = 'published';
         saveProducts();
         renderRailShowroom();
+        renderShowcaseGrid();
         renderAdminUI();
         showToast(`"${prod.name}" est de nouveau en vente !`);
       }
@@ -1100,9 +1185,117 @@ function renderAdminInventory() {
       state.products = state.products.filter(p => p.id !== b.dataset.delProd);
       saveProducts();
       renderRailShowroom();
+      renderShowcaseGrid();
       renderAdminUI();
       showToast('Article supprimé.');
     });
+  });
+}
+
+// Gestion des deux photos (Face Avant & Vue Arrière) dans le formulaire Admin
+function initAdminPhotoUploads() {
+  const fileFront = document.getElementById('productPhotoFileFront');
+  const fileBack = document.getElementById('productPhotoFileBack');
+
+  document.getElementById('photoDropzoneFront').addEventListener('click', (e) => {
+    if (e.target.id === 'changePhotoBtnFront' || e.target.closest('#photoPlaceholderFront') || e.target.id === 'photoDropzoneFront') {
+      fileFront.click();
+    }
+  });
+
+  document.getElementById('photoDropzoneBack').addEventListener('click', (e) => {
+    if (e.target.id === 'changePhotoBtnBack' || e.target.closest('#photoPlaceholderBack') || e.target.id === 'photoDropzoneBack') {
+      fileBack.click();
+    }
+  });
+
+  fileFront.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        state.uploadedFrontDataUrl = ev.target.result;
+        document.getElementById('productPhotoPreviewFront').src = ev.target.result;
+        document.getElementById('photoPlaceholderFront').classList.add('hidden');
+        document.getElementById('photoPreviewWrapperFront').classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  fileBack.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        state.uploadedBackDataUrl = ev.target.result;
+        document.getElementById('productPhotoPreviewBack').src = ev.target.result;
+        document.getElementById('photoPlaceholderBack').classList.add('hidden');
+        document.getElementById('photoPreviewWrapperBack').classList.remove('hidden');
+      };
+      reader.readAsDataURL(file);
+    }
+  });
+
+  document.getElementById('productForm').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!state.isAdmin) return;
+
+    const name = document.getElementById('productNameInput').value.trim();
+    const price = Number(document.getElementById('productPriceInput').value);
+    const urlFront = document.getElementById('productPhotoUrlFront').value.trim();
+    const urlBack = document.getElementById('productPhotoUrlBack').value.trim();
+
+    const finalFront = state.uploadedFrontDataUrl || urlFront;
+    const finalBack = state.uploadedBackDataUrl || urlBack || finalFront;
+
+    if (!name || !price || price <= 0) {
+      showToast('Veuillez renseigner un nom et un prix valides.');
+      return;
+    }
+
+    if (!finalFront) {
+      showToast('Veuillez renseigner au moins la photo de face avant.');
+      return;
+    }
+
+    const newProd = {
+      id: 'prod-' + Date.now(),
+      name,
+      category: 'vetement',
+      price,
+      image: finalFront,
+      imageBack: finalBack,
+      status: 'published',
+      createdAt: Date.now(),
+      colors: [
+        {
+          name: 'Standard',
+          hex: '#141413',
+          front: finalFront,
+          back: finalBack
+        }
+      ],
+      defaultColor: 'Standard'
+    };
+
+    state.products.unshift(newProd);
+    saveProducts();
+
+    if (window.location.protocol !== 'file:') {
+      fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(newProd)
+      }).catch(() => {});
+    }
+
+    renderRailShowroom();
+    renderShowcaseGrid();
+    renderAdminUI();
+    document.getElementById('productModalBackdrop').classList.add('hidden');
+    document.getElementById('productForm').reset();
+    showToast(`"${name}" avec Face Avant & Vue Arrière a été publié !`);
   });
 }
 
@@ -1110,36 +1303,14 @@ function renderAdminInventory() {
 // ÉCOUTEURS D'ÉVÉNEMENTS & INITIALISATION
 // ============================================================================
 function initEventListeners() {
-  // Bascule Mode Showroom / Grille
-  const viewModeBtn = document.getElementById('hdrViewModeBtn');
-  if (viewModeBtn) {
-    viewModeBtn.addEventListener('click', () => {
-      state.viewMode = state.viewMode === 'showroom' ? 'grid' : 'showroom';
-      document.getElementById('hdrViewModeLabel').textContent = state.viewMode === 'showroom' ? 'SHOWROOM' : 'GRILLE';
-      document.getElementById('showroomViewport').classList.toggle('hidden', state.viewMode !== 'showroom');
-      document.getElementById('gridCatalogueView').classList.toggle('hidden', state.viewMode !== 'grid');
-      if (state.viewMode === 'grid') renderClassicGrid();
-    });
-  }
-
-  const backToShowroomBtn = document.getElementById('btnBackToShowroom');
-  if (backToShowroomBtn) {
-    backToShowroomBtn.addEventListener('click', () => {
-      state.viewMode = 'showroom';
-      document.getElementById('hdrViewModeLabel').textContent = 'SHOWROOM';
-      document.getElementById('showroomViewport').classList.remove('hidden');
-      document.getElementById('gridCatalogueView').classList.add('hidden');
-    });
-  }
-
-  // Son ON/OFF
+  // Sons tactiles ON/OFF
   const audioBtn = document.getElementById('audioToggleBtn');
   if (audioBtn) {
     audioBtn.addEventListener('click', () => {
       state.audioEnabled = !state.audioEnabled;
       localStorage.setItem(STORAGE_KEYS.AUDIO_ENABLED, String(state.audioEnabled));
       document.getElementById('audioIcon').textContent = state.audioEnabled ? '🔊' : '🔇';
-      showToast(state.audioEnabled ? 'Sons interactifs activés 🔊' : 'Mode silencieux 🔇');
+      showToast(state.audioEnabled ? 'Sons tactiles activés 🔊' : 'Mode silencieux 🔇');
     });
   }
 
@@ -1152,21 +1323,32 @@ function initEventListeners() {
       if (state.activeProduct) {
         document.getElementById('focusedMainPrice').textContent = formatPrimaryPriceByCurrency(state.activeProduct.price);
       }
-      showToast(`Devise : ${e.target.value}`);
+      renderShowcaseGrid();
+      showToast(`Devise d'affichage : ${e.target.value}`);
     });
   }
+
+  // Filtres par catégorie
+  document.querySelectorAll('.filter-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      state.activeCategoryFilter = pill.dataset.filter;
+      renderShowcaseGrid();
+    });
+  });
 
   // Bouton retour tringle
   const returnBtn = document.getElementById('returnRackBtn');
   if (returnBtn) returnBtn.addEventListener('click', closeProductFocus);
 
-  // Bascule FRONT / BACK
+  // LES DEUX BOUTONS : FACE AVANT ET VUE ARRIÈRE
   const btnFront = document.getElementById('btnSideFront');
   const btnBack = document.getElementById('btnSideBack');
   if (btnFront) btnFront.addEventListener('click', () => toggleGarmentSide('front'));
   if (btnBack) btnBack.addEventListener('click', () => toggleGarmentSide('back'));
 
-  // Touche Échap pour quitter la vue produit
+  // Touche Échap
   window.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       if (state.activeProduct) closeProductFocus();
@@ -1174,10 +1356,11 @@ function initEventListeners() {
       document.getElementById('orderModalBackdrop').classList.add('hidden');
       document.getElementById('customerAuthModalBackdrop').classList.add('hidden');
       document.getElementById('loginModalBackdrop').classList.add('hidden');
+      document.getElementById('productModalBackdrop').classList.add('hidden');
     }
   });
 
-  // ADD TO CART & COMMANDER DIRECTEMENT
+  // Actions produit focalisé
   const addCartBtn = document.getElementById('focusedAddToCartBtn');
   if (addCartBtn) {
     addCartBtn.addEventListener('click', () => {
@@ -1192,7 +1375,7 @@ function initEventListeners() {
     });
   }
 
-  // Panier tiroir
+  // Panier
   document.getElementById('openCartDrawerBtn').addEventListener('click', openCartDrawer);
   document.getElementById('closeCartDrawerBtn').addEventListener('click', closeCartDrawer);
   document.getElementById('cartDrawerBackdrop').addEventListener('click', e => {
@@ -1206,7 +1389,7 @@ function initEventListeners() {
     }
   });
 
-  // Modal Commande
+  // Commande
   document.getElementById('closeOrderModalBtn').addEventListener('click', () => {
     document.getElementById('orderModalBackdrop').classList.add('hidden');
   });
@@ -1218,7 +1401,7 @@ function initEventListeners() {
   });
   document.getElementById('orderForm').addEventListener('submit', handleOrderSubmit);
 
-  // Onglets de Paiement dans la commande
+  // Onglets paiement
   document.getElementById('paymentMethodTabs').addEventListener('click', e => {
     const btn = e.target.closest('.pay-tab-btn');
     if (!btn) return;
@@ -1235,7 +1418,7 @@ function initEventListeners() {
     showToast('Numéro Wave (+221 77 453 22 55) copié !');
   });
 
-  // Compte & Favoris
+  // Favoris & Compte
   document.getElementById('openCustomerAuthBtn').addEventListener('click', () => openCustomerAuthModal(false));
   document.getElementById('closeCustomerAuthBtn').addEventListener('click', () => {
     document.getElementById('customerAuthModalBackdrop').classList.add('hidden');
@@ -1258,7 +1441,7 @@ function initEventListeners() {
       list.innerHTML = favs.map(p => `
         <div style="display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid var(--border-hairline);">
           <span>${escapeHtml(p.name)} — ${formatFCFA(p.price)}</span>
-          <button type="button" class="btn btn-sm btn-primary" onclick="openProductFocus(state.products.find(x => x.id === '${p.id}')); document.getElementById('favoritesModalBackdrop').classList.add('hidden');">Voir</button>
+          <button type="button" class="btn btn-sm btn-primary" onclick="openProductFocus(state.products.find(x => x.id === '${p.id}')); document.getElementById('favoritesModalBackdrop').classList.add('hidden');">Voir Face &amp; Dos</button>
         </div>
       `).join('');
     }
@@ -1293,31 +1476,28 @@ function initEventListeners() {
     document.getElementById('adminDashboardSection').classList.add('hidden');
     showToast('Session admin déconnectée.');
   });
-}
 
-function renderClassicGrid() {
-  const grid = document.getElementById('classicProductsGrid');
-  if (!grid) return;
-  const published = state.products.filter(p => p.status === 'published');
-  grid.innerHTML = published
-    .map(p => {
-      const col = (p.colors && p.colors[0]) || { front: p.image };
-      return `
-        <article class="classic-card">
-          <div class="classic-card-media" onclick="state.viewMode='showroom'; document.getElementById('hdrViewModeLabel').textContent='SHOWROOM'; document.getElementById('showroomViewport').classList.remove('hidden'); document.getElementById('gridCatalogueView').classList.add('hidden'); openProductFocus(state.products.find(x => x.id === '${p.id}'));">
-            <img src="${escapeHtml(col.front || p.image)}" alt="${escapeHtml(p.name)}" />
-          </div>
-          <div class="classic-card-body">
-            <h3 class="classic-card-title">${escapeHtml(p.name)}</h3>
-            <div class="classic-card-price">${formatPrimaryPriceByCurrency(p.price)}</div>
-            <div class="classic-card-footer">
-              <button type="button" class="classic-card-btn primary" onclick="state.viewMode='showroom'; document.getElementById('hdrViewModeLabel').textContent='SHOWROOM'; document.getElementById('showroomViewport').classList.remove('hidden'); document.getElementById('gridCatalogueView').classList.add('hidden'); openProductFocus(state.products.find(x => x.id === '${p.id}'));">Inspecter 3D</button>
-            </div>
-          </div>
-        </article>
-      `;
-    })
-    .join('');
+  document.getElementById('openAddProductBtn').addEventListener('click', () => {
+    document.getElementById('productForm').reset();
+    document.getElementById('photoPreviewWrapperFront').classList.add('hidden');
+    document.getElementById('photoPlaceholderFront').classList.remove('hidden');
+    document.getElementById('photoPreviewWrapperBack').classList.add('hidden');
+    document.getElementById('photoPlaceholderBack').classList.remove('hidden');
+    state.uploadedFrontDataUrl = '';
+    state.uploadedBackDataUrl = '';
+    document.getElementById('productModalBackdrop').classList.remove('hidden');
+  });
+  document.getElementById('adminBannerAddBtn').addEventListener('click', () => {
+    document.getElementById('openAddProductBtn').click();
+  });
+  document.getElementById('closeProductModalBtn').addEventListener('click', () => {
+    document.getElementById('productModalBackdrop').classList.add('hidden');
+  });
+  document.getElementById('cancelProductModalBtn').addEventListener('click', () => {
+    document.getElementById('productModalBackdrop').classList.add('hidden');
+  });
+
+  initAdminPhotoUploads();
 }
 
 // Initialisation au chargement de la page
@@ -1326,6 +1506,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updateCartBadge();
   updateFavoritesBadge();
   renderRailShowroom();
+  renderShowcaseGrid();
   initEventListeners();
   startPhysicsLoop();
 

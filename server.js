@@ -73,78 +73,108 @@ function initDatabase() {
     const initialProducts = [
       {
         id: 'prod-1',
-        name: 'Ensemble Costume Croisé Prestige',
+        name: 'Gilet Matelassé Colombe',
         price: 45000,
-        image: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=900&q=80',
+        image: 'assets/vest-orange-front.jpg',
         colors: [
-          { name: 'Noir', hex: '#141413' },
-          { name: 'Bleu Marine', hex: '#1E293B' },
-          { name: 'Beige Sable', hex: '#D8C3A5' }
+          {
+            name: 'Orange Vif',
+            hex: '#F95700',
+            front: 'assets/vest-orange-front.jpg',
+            back: 'assets/vest-orange-back.jpg'
+          },
+          {
+            name: 'Noir Intense',
+            hex: '#141413',
+            front: 'assets/vest-black-front.jpg',
+            back: 'assets/vest-black-back.jpg'
+          },
+          {
+            name: 'Crème Écru',
+            hex: '#E8E3D9',
+            front: 'assets/vest-cream-front.jpg',
+            back: 'assets/vest-cream-back.jpg'
+          }
         ],
         status: 'published',
         createdAt: Date.now() - 3600000 * 24
       },
       {
         id: 'prod-2',
-        name: 'Robe Longue Fluide en Soie Satinée',
-        price: 28000,
-        image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80',
+        name: 'Veste Biker en Toile Canvas & Velours',
+        price: 65000,
+        image: 'assets/jacket-front.jpg',
         colors: [
-          { name: 'Rouge Bordeaux', hex: '#7F1D1D' },
-          { name: 'Vert Émeraude', hex: '#047857' },
-          { name: 'Doré / Champagne', hex: '#C59B27' }
+          {
+            name: 'Kaki & Charcoal',
+            hex: '#373D3F',
+            front: 'assets/jacket-front.jpg',
+            back: 'assets/jacket-back.jpg'
+          }
         ],
         status: 'published',
         createdAt: Date.now() - 3600000 * 20
       },
       {
         id: 'prod-3',
-        name: 'Chemise Oxford Coupe Ajustée',
-        price: 15000,
-        image: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=900&q=80',
+        name: 'Sweat à Capuche Boxy Coton Épais',
+        price: 38000,
+        image: 'assets/hoodie-front.jpg',
         colors: [
-          { name: 'Blanc', hex: '#FFFFFF' },
-          { name: 'Bleu Ciel', hex: '#60A5FA' },
-          { name: 'Noir', hex: '#141413' }
+          {
+            name: 'Gris Anthracite Délavé',
+            hex: '#2B2B2B',
+            front: 'assets/hoodie-front.jpg',
+            back: 'assets/hoodie-back.jpg'
+          }
         ],
         status: 'published',
         createdAt: Date.now() - 3600000 * 16
       },
       {
         id: 'prod-4',
-        name: 'Sneakers Urbaines Cuir Premium',
-        price: 32000,
-        image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=900&q=80',
+        name: 'Pull Zippé en Maille Côtelée Rayée',
+        price: 42000,
+        image: 'assets/knit-front.jpg',
         colors: [
-          { name: 'Blanc', hex: '#FFFFFF' },
-          { name: 'Marron Chocolat', hex: '#5C3A21' },
-          { name: 'Noir', hex: '#141413' }
+          {
+            name: 'Bleu Marine & Blanc',
+            hex: '#1D2A44',
+            front: 'assets/knit-front.jpg',
+            back: 'assets/knit-back.jpg'
+          }
         ],
         status: 'published',
         createdAt: Date.now() - 3600000 * 12
       },
       {
         id: 'prod-5',
-        name: 'Ensemble Tunique & Pantalon Chic',
-        price: 25000,
-        image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
+        name: 'T-Shirt Coupe Boxy Coton Lourd',
+        price: 22000,
+        image: 'assets/tee-front.jpg',
         colors: [
-          { name: 'Beige Sable', hex: '#D8C3A5' },
-          { name: 'Rose Poudré', hex: '#F4ACB7' },
-          { name: 'Blanc', hex: '#FFFFFF' }
+          {
+            name: 'Blanc Vintage',
+            hex: '#F0EFEA',
+            front: 'assets/tee-front.jpg',
+            back: 'assets/tee-back.jpg'
+          }
         ],
         status: 'published',
         createdAt: Date.now() - 3600000 * 8
       },
       {
         id: 'prod-6',
-        name: 'Mocassins en Daim Véritable',
-        price: 22000,
-        image: 'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?auto=format&fit=crop&w=900&q=80',
+        name: 'Sneakers Rétro Streetwear Cuir Premium',
+        price: 55000,
+        image: 'assets/sneakers-front.jpg',
         colors: [
-          { name: 'Marron Chocolat', hex: '#5C3A21' },
-          { name: 'Noir', hex: '#141413' },
-          { name: 'Bleu Marine', hex: '#1E293B' }
+          {
+            name: 'Blanc & Noir',
+            hex: '#FFFFFF',
+            front: 'assets/sneakers-front.jpg',
+            back: 'assets/sneakers-back.jpg'
+          }
         ],
         status: 'published',
         createdAt: Date.now() - 3600000 * 4

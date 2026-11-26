@@ -5,40 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>STUDIO ARCHIVE — 2026 Interactive Fashion Showroom</title>
-  <meta name="description" content="Showroom interactif de mode et streetwear contemporain. Découvrez la collection sur tringle interactive 3D." />
+  <title>Barry Aliou Shop — Boutique Officielle • Mode, Vêtements &amp; Sneakers</title>
+  <meta name="description" content="Barry Aliou Shop : Boutique internationale de vêtements haut de gamme, sneakers et streetwear contemporain. Visualisation 3D pile et face, livraison internationale." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body class="showroom-body">
 
   <!-- ===================================================================== -->
-  <!-- EN-TÊTE MINIMALISTE & ÉPURÉ (Centered Logo / Title)                  -->
+  <!-- EN-TÊTE MINIMALISTE HAUT DE GAMME : BARRY ALIOU SHOP                  -->
   <!-- ===================================================================== -->
   <header class="studio-header">
     <div class="header-left">
-      <button type="button" class="hdr-btn" id="hdrViewModeBtn" title="Changer de vue">
+      <a href="#showroomSection" class="hdr-btn" id="hdrViewModeBtn" title="Salon d'essayage tringle 3D">
         <span class="view-indicator-dot"></span>
-        <span id="hdrViewModeLabel">SHOWROOM</span>
-      </button>
+        <span>Tringle 3D</span>
+      </a>
+
+      <a href="#catalogueComplet" class="hdr-btn hide-sm" title="Voir tous les articles en bas">
+        <span>Catalogue</span>
+      </a>
 
       <div class="currency-dropdown-wrap">
-        <select id="currencySelector" class="hdr-currency-select" aria-label="Devise">
-          <option value="FCFA">FCFA (XOF)</option>
+        <select id="currencySelector" class="hdr-currency-select" aria-label="Devise d'affichage">
+          <option value="FCFA">🇸🇳 FCFA (XOF)</option>
           <option value="GNF">🇬🇳 GNF (Guinée)</option>
-          <option value="EUR">€ EUR</option>
-          <option value="USD">$ USD</option>
+          <option value="EUR">🇪🇺 € EUR</option>
+          <option value="USD">🇺🇸 $ USD</option>
         </select>
       </div>
     </div>
 
-    <!-- Titre / Logo centré en haut sur fond clair épuré (Neutre / Studio) -->
+    <!-- Nom de la Boutique Centré en Haut avec un Design Épuré et Luxueux -->
     <div class="header-center">
-      <a href="#" class="studio-brand-link" id="brandTitleLink">
-        <span class="studio-brand-title" id="brandNameDisplay">UNKNOWN</span>
-        <span class="studio-brand-sub">EDITION 2026</span>
+      <a href="#showroomSection" class="studio-brand-link" id="brandTitleLink">
+        <span class="studio-brand-title" id="brandNameDisplay">Barry Aliou Shop</span>
+        <span class="studio-brand-sub">BOUTIQUE OFFICIELLE • MODE &amp; SNEAKERS</span>
       </a>
     </div>
 
@@ -49,23 +53,23 @@
       </button>
 
       <!-- Favoris ❤️ -->
-      <button type="button" class="hdr-btn" id="openFavoritesModalBtn" title="Favoris">
+      <button type="button" class="hdr-btn" id="openFavoritesModalBtn" title="Mes Favoris">
         <span>❤️</span>
         <span class="badge-count" id="favoritesHeaderCount">0</span>
       </button>
 
       <!-- Compte Client -->
-      <button type="button" class="hdr-btn" id="openCustomerAuthBtn" title="Compte">
+      <button type="button" class="hdr-btn" id="openCustomerAuthBtn" title="Mon Compte Client">
         <span id="customerHeaderLabel">Compte</span>
       </button>
 
-      <!-- Panier / Bag -->
+      <!-- Panier -->
       <button type="button" class="hdr-btn btn-cart-highlight" id="openCartDrawerBtn" title="Mon Panier">
-        <span>BAG</span>
+        <span>Panier</span>
         <span class="badge-count cart-count" id="cartHeaderCount">0</span>
       </button>
 
-      <!-- Admin discret -->
+      <!-- Cadenas Admin discret -->
       <button type="button" class="hdr-icon-btn admin-lock-btn" id="openLoginModalBtn" title="Accès Administrateur">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
       </button>
@@ -80,14 +84,14 @@
   </header>
 
   <!-- ===================================================================== -->
-  <!-- VUE SHOWROOM INTERACTIF : LA TRINGLE 3D & LA FICHE PRODUIT             -->
+  <!-- SECTION 1 : SHOWROOM TRINGLE 3D INTERACTIVE (Haut de page)            -->
   <!-- ===================================================================== -->
-  <main class="showroom-viewport" id="showroomViewport">
+  <section class="showroom-viewport" id="showroomSection">
 
     <!-- Bouton de retour vers la tringle (Visible en Vue 2) -->
-    <button type="button" class="return-rack-btn" id="returnRackBtn" title="Retourner à la collection complète">
+    <button type="button" class="return-rack-btn" id="returnRackBtn" title="Retourner à la tringle complète">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-      <span>COLLECTION</span>
+      <span>RETOUR À LA TRINGLE</span>
     </button>
 
     <!-- La tringle métallique horizontale traversant l'écran -->
@@ -104,39 +108,39 @@
     <!-- =================================================================== -->
     <div class="rail-stage-track" id="railStageTrack">
       <div class="hangers-container" id="hangersContainer">
-        <!-- Rendu dynamique par JavaScript : cintres, vêtements, animations de balancement -->
+        <!-- Rendu dynamique JavaScript des articles avec simulation physique -->
       </div>
     </div>
 
     <!-- Micro-badge d'aperçu au survol d'un article sur la tringle -->
     <div class="rail-hover-tooltip" id="railHoverTooltip">
-      <span class="hover-tip-title" id="hoverTipTitle">UNKNOWN C DOVE VEST</span>
-      <span class="hover-tip-price" id="hoverTipPrice">45 000 FCFA</span>
+      <span class="hover-tip-title" id="hoverTipTitle">Nom de l'article</span>
+      <span class="hover-tip-price" id="hoverTipPrice">0 FCFA</span>
     </div>
 
     <!-- =================================================================== -->
-    <!-- VUE 2 : TRANSITION VERS LA FICHE PRODUIT INTERACTIVE                -->
+    <!-- VUE 2 : FICHE PRODUIT INTERACTIVE AVEC DEUX BOUTONS (FACE / ARRIÈRE)-->
     <!-- =================================================================== -->
-    <section class="product-focus-stage" id="productFocusStage">
+    <div class="product-focus-stage" id="productFocusStage">
 
-      <!-- Mini-aperçus / Sélecteur de variantes (Flottant à droite du produit) -->
+      <!-- Sélecteur de couleurs / variantes (Flottant à droite) -->
       <aside class="floating-variants-panel" id="floatingVariantsPanel">
-        <span class="variants-heading">Colorways</span>
+        <span class="variants-heading">Couleurs</span>
         <div class="variants-mini-stack" id="variantsMiniStack">
           <!-- Miniatures des variantes sur cintres -->
         </div>
       </aside>
 
-      <!-- Le Vêtement Centré avec Ombres Portées Douces et Bascule 3D -->
+      <!-- Le Vêtement / Chaussure Centré avec Ombres Douces et Bascule 3D -->
       <div class="focused-garment-wrapper" id="focusedGarmentWrapper">
         <div class="garment-flipper" id="garmentFlipper">
-          <!-- Face Avant (FRONT) -->
+          <!-- Face Avant (Devant) -->
           <div class="garment-face face-front">
-            <img id="focusedImgFront" src="" alt="Face avant" />
+            <img id="focusedImgFront" src="" alt="Face avant de l'article" />
           </div>
-          <!-- Face Arrière (BACK) -->
+          <!-- Vue Arrière (Dos / Arrière) -->
           <div class="garment-face face-back">
-            <img id="focusedImgBack" src="" alt="Face arrière" />
+            <img id="focusedImgBack" src="" alt="Vue arrière de l'article" />
           </div>
         </div>
 
@@ -144,69 +148,147 @@
         <div class="garment-ambient-shadow"></div>
       </div>
 
-      <!-- Contrôles sous le vêtement centré -->
+      <!-- Contrôles sous l'article centré -->
       <div class="focused-controls-panel" id="focusedControlsPanel">
         <div class="focused-text-meta">
-          <h1 class="focused-product-title" id="focusedProductTitle">UNKNOWN C DOVE VEST</h1>
+          <h1 class="focused-product-title" id="focusedProductTitle">Nom de l'article</h1>
           <div class="focused-price-row">
-            <span class="focused-main-price" id="focusedMainPrice">45 000 FCFA</span>
-            <span class="focused-gnf-price" id="focusedGnfPrice">🇬🇳 643 500 GNF</span>
-            <span class="focused-intl-price" id="focusedIntlPrice">≈ $75 USD • 69 € EUR</span>
+            <span class="focused-main-price" id="focusedMainPrice">0 FCFA</span>
+            <span class="focused-gnf-price" id="focusedGnfPrice">🇬🇳 0 GNF</span>
+            <span class="focused-intl-price" id="focusedIntlPrice">≈ $0 USD • 0 € EUR</span>
           </div>
         </div>
 
-        <!-- Interrupteur / Bascule de face (FRONT / BACK) -->
+        <!-- LES DEUX BOUTONS DE BASCULE : FACE AVANT ET VUE ARRIÈRE (PILE & FACE) -->
         <div class="face-toggle-switch">
           <div class="switch-pill-track">
-            <button type="button" class="switch-side-btn active" id="btnSideFront" data-side="front">FRONT</button>
-            <button type="button" class="switch-side-btn" id="btnSideBack" data-side="back">BACK</button>
+            <button type="button" class="switch-side-btn active" id="btnSideFront" data-side="front">
+              <span>Face Avant</span>
+            </button>
+            <button type="button" class="switch-side-btn" id="btnSideBack" data-side="back">
+              <span>Vue Arrière</span>
+            </button>
             <span class="switch-active-glider" id="switchGlider"></span>
           </div>
         </div>
 
-        <!-- Boutons d'Action (ADD TO CART & COMMANDER 10%) -->
+        <!-- Boutons d'Action (AJOUTER AU PANIER & COMMANDER 10%) -->
         <div class="focused-actions-group">
           <button type="button" class="btn-add-to-cart" id="focusedAddToCartBtn">
-            <span>ADD TO CART</span>
+            <span>Ajouter au Panier</span>
           </button>
 
           <button type="button" class="btn-direct-order" id="focusedDirectOrderBtn">
-            <span>COMMANDER (10 % Acompte)</span>
+            <span>Commander (Acompte 10 %)</span>
           </button>
         </div>
 
-        <!-- Mention Acompte 10% & Moyens de paiement -->
+        <!-- Mention Acompte 10 % & Paiements -->
         <div class="focused-deposit-caption">
-          Acompte 10 % obligatoire pour validation : <strong id="focusedDepositAmount">4 500 FCFA</strong>
-          • Wave / Orange Money / Carte Bancaire (+221 77 453 22 55)
+          Acompte de 10 % obligatoire pour validation : <strong id="focusedDepositAmount">0 FCFA</strong><br />
+          Règlement sécurisé par <strong>Wave</strong>, <strong>Orange Money</strong> ou <strong>Carte Bancaire</strong> au <strong>+221 77 453 22 55</strong>.
         </div>
       </div>
-    </section>
-
-    <!-- Guide interactif discret en bas de page pour la tringle -->
-    <div class="rack-hint-bar" id="rackHintBar">
-      <span>Glissez le curseur pour faire balancer les articles • Cliquez sur un vêtement pour l'inspecter</span>
     </div>
-  </main>
 
-  <!-- ===================================================================== -->
-  <!-- VUE GRILLE ALTERNATIVE (Pour navigation rapide ou mobile)             -->
-  <!-- ===================================================================== -->
-  <section class="grid-catalogue-view hidden" id="gridCatalogueView">
-    <div class="grid-container">
-      <div class="grid-header-row">
-        <div>
-          <h2>Catalogue complet</h2>
-          <p>Tous nos vêtements, sneakers et accessoires disponibles.</p>
-        </div>
-        <button type="button" class="btn-back-to-rack" id="btnBackToShowroom">← Vue Showroom Tringle</button>
-      </div>
-      <div class="classic-products-grid" id="classicProductsGrid"></div>
+    <!-- Guide interactif discret en bas de tringle avec invitation au scroll -->
+    <div class="rack-hint-bar" id="rackHintBar">
+      <span>Glissez le curseur pour faire balancer • Cliquez sur un article pour voir sa face et son dos • Faites défiler vers le bas pour le catalogue complet ↓</span>
     </div>
   </section>
 
   <!-- ===================================================================== -->
-  <!-- TIROIR PANIER LATÉRAL (BAG DRAWER)                                    -->
+  <!-- SECTION 2 : CATALOGUE COMPLET ACCESSIBLE PAR DÉFILEMENT (SCROLL)      -->
+  <!-- ===================================================================== -->
+  <main class="catalogue-section-main" id="catalogueComplet">
+    <div class="section-container">
+      
+      <div class="catalogue-header-block">
+        <div class="catalogue-titles">
+          <span class="eyebrow-tag">COLLECTION BARRY ALIOU SHOP</span>
+          <h2 class="catalogue-main-title">Tous les Vêtements &amp; Sneakers</h2>
+          <p class="catalogue-subtitle">Découvrez l'ensemble de nos pièces disponibles. Cliquez sur une pièce pour l'examiner sous tous les angles (pile et face) ou passer commande immédiatement.</p>
+        </div>
+
+        <div class="catalogue-filters-bar">
+          <button type="button" class="filter-pill active" data-filter="all">Tous les articles</button>
+          <button type="button" class="filter-pill" data-filter="vetement">Vêtements</button>
+          <button type="button" class="filter-pill" data-filter="chaussure">Sneakers &amp; Chaussures</button>
+          <button type="button" class="filter-pill" data-filter="veste">Vestes &amp; Manteaux</button>
+        </div>
+      </div>
+
+      <!-- Grille de tous les articles -->
+      <div class="products-showcase-grid" id="classicProductsGrid"></div>
+
+      <!-- Bandeau récapitulatif du fonctionnement des 10 % -->
+      <section class="how-it-works-strip">
+        <h3 class="strip-title">Comment commander chez Barry Aliou Shop ?</h3>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num">01</div>
+            <h4>Visualisez Face &amp; Dos</h4>
+            <p>Inspectez le vêtement ou la chaussure de face et d'arrière avec les différentes couleurs disponibles.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">02</div>
+            <h4>Réglez les 10 % d'acompte</h4>
+            <p>Payez 10 % de réservation par Wave, Orange Money ou Carte Bancaire sur notre numéro officiel (+221 77 453 22 55).</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-num">03</div>
+            <h4>Livraison Partout dans le Monde</h4>
+            <p>Dès validation, l'article est retiré des ventes et vous est expédié (Sénégal, Guinée, Mali, Côte d'Ivoire, Europe, USA...). Le solde de 90 % est réglé à la livraison.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact WhatsApp Direct -->
+      <div class="whatsapp-banner">
+        <div class="whatsapp-content">
+          <h3>Une question ou une commande directe ?</h3>
+          <p>Mamadou Aliou Barry est disponible directement sur WhatsApp pour vous accompagner et organiser votre livraison.</p>
+        </div>
+        <a href="https://wa.me/221774532255?text=Bonjour%20Mamadou%20Aliou%20Barry%20!%20Je%20vous%20contacte%20depuis%20Barry%20Aliou%20Shop." target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+          Discuter sur WhatsApp (+221 77 453 22 55)
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- PIED DE PAGE HAUT DE GAMME (FOOTER BARRY ALIOU SHOP)                  -->
+  <!-- ===================================================================== -->
+  <footer class="studio-footer">
+    <div class="footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo">Barry Aliou Shop</span>
+          <p class="footer-tagline">Boutique officielle de prêt-à-porter masculin et féminin, streetwear moderne, costumes et sneakers de qualité supérieure. Dakar • Conakry • Expédition internationale.</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Paiements Sécurisés</h5>
+          <p>• Wave Sénégal &amp; International<br/>• Orange Money Sénégal &amp; Guinée (GNF)<br/>• Carte Bancaire (Visa / Mastercard)</p>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact Officiel</h5>
+          <p>Téléphone &amp; WhatsApp :<br/><strong>+221 77 453 22 55</strong><br/>Email : mamadoualioubarry1871@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 Barry Aliou Shop. Tous droits réservés.</span>
+        <span>Acompte de 10 % requis à la commande • Solde à la livraison</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===================================================================== -->
+  <!-- TIROIR PANIER LATÉRAL                                                 -->
   <!-- ===================================================================== -->
   <aside class="cart-drawer-backdrop hidden" id="cartDrawerBackdrop">
     <div class="cart-drawer-panel">
@@ -215,28 +297,26 @@
         <button type="button" class="cart-drawer-close" id="closeCartDrawerBtn">&times;</button>
       </div>
 
-      <div class="cart-drawer-items" id="cartDrawerItems">
-        <!-- Liste des articles ajoutés au panier -->
-      </div>
+      <div class="cart-drawer-items" id="cartDrawerItems"></div>
 
       <div class="cart-drawer-footer" id="cartDrawerFooter">
         <div class="cart-breakdown">
           <div class="cart-row">
-            <span>Total des articles</span>
+            <span>Total des articles :</span>
             <strong id="cartTotalArticles">0 FCFA</strong>
           </div>
           <div class="cart-row cart-deposit-highlight">
-            <span>Acompte 10 % à régler maintenant</span>
+            <span>Acompte de 10 % à régler maintenant :</span>
             <strong id="cartTotalDeposit">0 FCFA</strong>
           </div>
           <div class="cart-row cart-sub-row">
-            <span>Solde à la livraison (90 %)</span>
+            <span>Solde restant à la livraison (90 %) :</span>
             <span id="cartRemainingBalance">0 FCFA</span>
           </div>
         </div>
 
         <button type="button" class="btn btn-primary btn-block btn-lg" id="checkoutFromCartBtn">
-          Valider ma commande (Payer 10 %)
+          Valider ma commande (Payer les 10 %)
         </button>
       </div>
     </div>
@@ -263,16 +343,10 @@
               <strong id="orderProductPrice">0 FCFA</strong>
               <span id="orderProductPriceGnf" class="text-muted"></span>
             </div>
-            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+            <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">
               Couleur : <strong id="orderSelectedColorSummary">Standard</strong>
             </div>
           </div>
-        </div>
-
-        <!-- Choix de couleur si disponible -->
-        <div class="form-group" id="orderColorGroup">
-          <label class="form-label">Variante / Couleur sélectionnée</label>
-          <div class="color-choice-pills" id="orderColorOptions"></div>
         </div>
 
         <!-- Coordonnées Client -->
@@ -302,7 +376,7 @@
         <div class="deposit-calculation-box">
           <div class="deposit-header">
             <span class="deposit-tag">RÈGLEMENT DE L'ACOMPTE</span>
-            <span class="deposit-badge">10 % de validation</span>
+            <span class="deposit-badge">10 % de réservation</span>
           </div>
           <div class="deposit-amounts">
             <div>
@@ -314,12 +388,12 @@
               <strong class="deposit-due" id="depositDueDisplay">0 FCFA</strong>
             </div>
             <div>
-              <span class="deposit-label">Solde restant à la livraison :</span>
+              <span class="deposit-label">Solde restant à payer à la livraison :</span>
               <span class="deposit-rest" id="depositRestDisplay">0 FCFA</span>
             </div>
           </div>
           <p class="deposit-security-text">
-            Conformément à nos conditions, votre commande est réservée dès réception des 10 % d'acompte. L'article est immédiatement retiré des ventes pour vous être préparé.
+            Votre commande est validée dès réception des 10 % d'acompte. L'article est immédiatement retiré de la vente pour vous être réservé.
           </p>
         </div>
 
@@ -354,9 +428,6 @@
                 <strong class="phone-number">+221 77 453 22 55</strong>
                 <span class="phone-holder">(Mamadou Aliou Barry)</span>
               </div>
-              <p class="pay-step-note">
-                Ouvrez votre application Wave &gt; Transférer &gt; Tapez <strong>77 453 22 55</strong> &gt; Validez le montant de 10 %.
-              </p>
             </div>
           </div>
 
@@ -372,10 +443,6 @@
                 <strong class="phone-number">+221 77 453 22 55</strong>
                 <span class="phone-holder">(Mamadou Aliou Barry)</span>
               </div>
-              <p class="pay-step-note">
-                Depuis le Sénégal : tapez <code>#144#</code> ou l'app Max it.<br />
-                Depuis la Guinée : utilisez votre compte Orange Money Guinée vers Wave/OM Sénégal.
-              </p>
             </div>
           </div>
 
@@ -385,14 +452,7 @@
               <div class="pay-card-header">
                 <strong>Carte Bancaire Internationale (Visa / Mastercard)</strong>
               </div>
-              <p>Paiement sécurisé converti directement sur notre compte Wave :</p>
-              <div class="merchant-phone-highlight">
-                <span class="phone-label">Bénéficiaire Wave :</span>
-                <strong class="phone-number">+221 77 453 22 55</strong>
-              </div>
-              <p class="pay-step-note" style="margin-top: 8px;">
-                Vous pouvez régler par carte bancaire internationale via l'application Wave, Sendwave ou TapTap Send vers le numéro <strong>+221 77 453 22 55</strong>.
-              </p>
+              <p>Réglez par carte bancaire internationale via Wave, Sendwave ou TapTap Send vers le numéro <strong>+221 77 453 22 55</strong>.</p>
             </div>
           </div>
 
@@ -416,7 +476,7 @@
           <div class="success-icon">✓</div>
           <h3>Félicitations pour votre commande !</h3>
           <p class="success-message">
-            Votre réservation de 10 % a été transmise. L'article a été retiré de la vente pour vous être réservé.
+            Votre réservation de 10 % a été validée. L'article a été retiré de la vente pour vous être réservé.
           </p>
           <div class="success-actions">
             <a href="#" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg btn-block" id="whatsappConfirmLink">
@@ -499,7 +559,7 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- MODALE CONNEXION ADMINISTRATEUR (Email & PIN 100% masqués)             -->
+  <!-- MODALE CONNEXION ADMINISTRATEUR (Code PIN & Email masqués)             -->
   <!-- ===================================================================== -->
   <div class="modal-backdrop hidden" id="loginModalBackdrop" role="dialog" aria-modal="true">
     <div class="modal-card modal-sm">
@@ -592,11 +652,12 @@
 
   <!-- ===================================================================== -->
   <!-- MODALE AJOUT / MODIFICATION D'ARTICLE PAR L'ADMIN                     -->
+  <!-- AVEC DEUX PHOTOS OBLIGATOIRES : FACE AVANT ET VUE ARRIÈRE (DOS)       -->
   <!-- ===================================================================== -->
   <div class="modal-backdrop hidden" id="productModalBackdrop" role="dialog" aria-modal="true">
     <div class="modal-card modal-lg">
       <div class="modal-header">
-        <h3 id="productModalTitle">Ajouter un article</h3>
+        <h3 id="productModalTitle">Ajouter un article (Face &amp; Dos)</h3>
         <button type="button" class="modal-close-btn" id="closeProductModalBtn">&times;</button>
       </div>
 
@@ -606,7 +667,7 @@
         <div class="form-row-grid">
           <div class="form-group">
             <label for="productNameInput" class="form-label">Nom de l'article *</label>
-            <input type="text" id="productNameInput" class="form-input" placeholder="Ex: Veste Streetwear Puffer" required maxlength="120" />
+            <input type="text" id="productNameInput" class="form-input" placeholder="Ex: Chemise Coupe Italienne ou Sneakers Jordan" required maxlength="120" />
           </div>
           <div class="form-group">
             <label for="productPriceInput" class="form-label">Prix de vente (en FCFA) *</label>
@@ -615,20 +676,41 @@
           </div>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Photo principale de l'annonce *</label>
-          <div class="photo-dropzone" id="photoDropzone">
-            <input type="file" id="productPhotoFile" accept="image/*" class="file-hidden-input" />
-            <div id="photoUploadPlaceholder" class="upload-placeholder">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>Glissez une photo ou cliquez pour importer</span>
+        <!-- ZONE DEUX PHOTOS : PHOTO FACE AVANT & PHOTO VUE ARRIÈRE -->
+        <div class="form-row-grid">
+          <!-- Photo 1 : Face Avant -->
+          <div class="form-group">
+            <label class="form-label">Photo 1 : Face Avant (Devant) *</label>
+            <div class="photo-dropzone" id="photoDropzoneFront">
+              <input type="file" id="productPhotoFileFront" accept="image/*" class="file-hidden-input" />
+              <div id="photoPlaceholderFront" class="upload-placeholder">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span>Importer Photo Face Avant</span>
+              </div>
+              <div id="photoPreviewWrapperFront" class="photo-preview-wrapper hidden">
+                <img id="productPhotoPreviewFront" src="" alt="Aperçu face avant" />
+                <button type="button" class="btn btn-sm btn-secondary" id="changePhotoBtnFront">Changer</button>
+              </div>
             </div>
-            <div id="photoPreviewWrapper" class="photo-preview-wrapper hidden">
-              <img id="productPhotoPreview" src="" alt="Aperçu" />
-              <button type="button" class="btn btn-sm btn-secondary" id="changePhotoBtn">Remplacer</button>
-            </div>
+            <input type="url" id="productPhotoUrlFront" class="form-input" style="margin-top: 6px;" placeholder="Ou lien URL face avant (https://...)" />
           </div>
-          <input type="url" id="productPhotoUrlInput" class="form-input" style="margin-top: 8px;" placeholder="Ou collez un lien d'image direct (https://...)" />
+
+          <!-- Photo 2 : Vue Arrière -->
+          <div class="form-group">
+            <label class="form-label">Photo 2 : Vue Arrière (Dos / Pile) *</label>
+            <div class="photo-dropzone" id="photoDropzoneBack">
+              <input type="file" id="productPhotoFileBack" accept="image/*" class="file-hidden-input" />
+              <div id="photoPlaceholderBack" class="upload-placeholder">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                <span>Importer Photo Vue Arrière</span>
+              </div>
+              <div id="photoPreviewWrapperBack" class="photo-preview-wrapper hidden">
+                <img id="productPhotoPreviewBack" src="" alt="Aperçu vue arrière" />
+                <button type="button" class="btn btn-sm btn-secondary" id="changePhotoBtnBack">Changer</button>
+              </div>
+            </div>
+            <input type="url" id="productPhotoUrlBack" class="form-input" style="margin-top: 6px;" placeholder="Ou lien URL vue arrière (https://...)" />
+          </div>
         </div>
 
         <!-- Couleurs / Déclinaisons disponibles -->
@@ -636,8 +718,8 @@
           <label class="form-label">Couleurs disponibles * (sélectionnez-en au moins une)</label>
           <div class="preset-colors-picker" id="presetColorsContainer"></div>
           <div class="custom-color-inline">
-            <input type="text" id="customColorName" class="form-input" placeholder="Autre couleur (Ex: Orange)" maxlength="30" />
-            <input type="color" id="customColorHex" value="#F95700" title="Choisir la teinte" />
+            <input type="text" id="customColorName" class="form-input" placeholder="Autre couleur (Ex: Noir, Blanc, Beige)" maxlength="30" />
+            <input type="color" id="customColorHex" value="#141413" title="Choisir la teinte" />
             <button type="button" class="btn btn-secondary btn-sm" id="addCustomColorBtn">+ Ajouter cette couleur</button>
           </div>
           <div class="selected-colors-tags" id="selectedColorsList"></div>
@@ -645,7 +727,7 @@
 
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" id="cancelProductModalBtn">Annuler</button>
-          <button type="submit" class="btn btn-primary" id="saveProductSubmitBtn">Publier sur la boutique</button>
+          <button type="submit" class="btn btn-primary" id="saveProductSubmitBtn">Publier sur Barry Aliou Shop</button>
         </div>
       </form>
     </div>
