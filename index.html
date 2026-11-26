@@ -5,119 +5,543 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-Content-Type-Options" content="nosniff" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <title>Barry Aliou Shop — Vêtements & Sneakers de Qualité</title>
-  <meta name="description" content="Barry Aliou Shop : Boutique officielle de vêtements, chaussures et sneakers de qualité. Livraison internationale." />
+  <title>STUDIO ARCHIVE — 2026 Interactive Fashion Showroom</title>
+  <meta name="description" content="Showroom interactif de mode et streetwear contemporain. Découvrez la collection sur tringle interactive 3D." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <!-- Barre supérieure minimaliste -->
-  <div class="top-bar">
-    <div class="container top-bar-inner">
-      <span>✈️ Livraison internationale • Sénégal, Guinée, Europe, USA</span>
-      <div class="top-bar-right">
-        <select id="currencySelector" class="currency-switcher" aria-label="Choisir la devise">
-          <option value="FCFA">🇸🇳 Prix en FCFA</option>
-          <option value="GNF">🇬🇳 Franc Guinéen (GNF)</option>
-          <option value="USD">🇺🇸 Dollar ($ USD)</option>
-          <option value="EUR">🇪🇺 Euro (€ EUR)</option>
+<body class="showroom-body">
+
+  <!-- ===================================================================== -->
+  <!-- EN-TÊTE MINIMALISTE & ÉPURÉ (Centered Logo / Title)                  -->
+  <!-- ===================================================================== -->
+  <header class="studio-header">
+    <div class="header-left">
+      <button type="button" class="hdr-btn" id="hdrViewModeBtn" title="Changer de vue">
+        <span class="view-indicator-dot"></span>
+        <span id="hdrViewModeLabel">SHOWROOM</span>
+      </button>
+
+      <div class="currency-dropdown-wrap">
+        <select id="currencySelector" class="hdr-currency-select" aria-label="Devise">
+          <option value="FCFA">FCFA (XOF)</option>
+          <option value="GNF">🇬🇳 GNF (Guinée)</option>
+          <option value="EUR">€ EUR</option>
+          <option value="USD">$ USD</option>
         </select>
-        <button type="button" class="top-share-link" id="shareShopTopBtn">Partager le site</button>
       </div>
     </div>
-  </div>
 
-  <!-- Navigation principale épurée -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#catalogue" class="brand-logo">
-        <span class="brand-mark">BAS</span>
-        <span class="brand-name" id="brandNameDisplay">Barry Aliou Shop</span>
+    <!-- Titre / Logo centré en haut sur fond clair épuré (Neutre / Studio) -->
+    <div class="header-center">
+      <a href="#" class="studio-brand-link" id="brandTitleLink">
+        <span class="studio-brand-title" id="brandNameDisplay">UNKNOWN</span>
+        <span class="studio-brand-sub">EDITION 2026</span>
       </a>
+    </div>
 
-      <div class="header-search">
-        <svg class="search-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input type="text" id="searchInput" placeholder="Rechercher un article, une couleur..." aria-label="Rechercher" />
-      </div>
+    <div class="header-right">
+      <!-- Son micro-interactions -->
+      <button type="button" class="hdr-icon-btn" id="audioToggleBtn" title="Activer / Couper les sons tactiles">
+        <span id="audioIcon">🔊</span>
+      </button>
 
-      <div class="header-actions">
-        <button type="button" class="nav-action-btn" id="openFavoritesModalBtn" title="Mes Favoris">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          <span class="hide-sm">Favoris</span>
-          <span class="badge-pill" id="favoritesHeaderCount">0</span>
-        </button>
+      <!-- Favoris ❤️ -->
+      <button type="button" class="hdr-btn" id="openFavoritesModalBtn" title="Favoris">
+        <span>❤️</span>
+        <span class="badge-count" id="favoritesHeaderCount">0</span>
+      </button>
 
-        <button type="button" class="nav-action-btn" id="openCustomerAuthBtn" title="Compte Client">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span id="customerHeaderLabel" class="hide-sm">Compte</span>
-        </button>
+      <!-- Compte Client -->
+      <button type="button" class="hdr-btn" id="openCustomerAuthBtn" title="Compte">
+        <span id="customerHeaderLabel">Compte</span>
+      </button>
 
-        <!-- Bouton Admin discret -->
-        <button type="button" class="nav-action-btn admin-trigger" id="openLoginModalBtn" title="Administration">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          <span class="hide-sm">Admin</span>
-        </button>
+      <!-- Panier / Bag -->
+      <button type="button" class="hdr-btn btn-cart-highlight" id="openCartDrawerBtn" title="Mon Panier">
+        <span>BAG</span>
+        <span class="badge-count cart-count" id="cartHeaderCount">0</span>
+      </button>
 
-        <!-- Contrôles Admin connecté -->
-        <div class="admin-logged-pill hidden" id="adminHeaderControls">
-          <button type="button" class="btn btn-primary btn-sm" id="openAddProductBtn">+ Ajouter</button>
-          <button type="button" class="btn btn-outline btn-sm" id="toggleAdminPanelBtn">
-            Gestion (<span id="adminOrdersBadge">0</span>)
-          </button>
-          <button type="button" class="btn-icon-logout" id="logoutAdminBtn" title="Déconnexion">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
-          </button>
-        </div>
+      <!-- Admin discret -->
+      <button type="button" class="hdr-icon-btn admin-lock-btn" id="openLoginModalBtn" title="Accès Administrateur">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </button>
+
+      <!-- Contrôles Admin si connecté -->
+      <div class="admin-quick-pill hidden" id="adminHeaderControls">
+        <button type="button" class="btn btn-sm btn-admin-action" id="openAddProductBtn">+ Article</button>
+        <button type="button" class="btn btn-sm btn-admin-action" id="toggleAdminPanelBtn">Admin (<span id="adminOrdersBadge">0</span>)</button>
+        <button type="button" class="btn-icon-admin-out" id="logoutAdminBtn" title="Déconnexion Admin">&times;</button>
       </div>
     </div>
   </header>
 
-  <!-- Section Hero Moderne & Épurée avec Sneakers Jordan -->
-  <section class="hero-section">
-    <div class="container hero-grid">
-      <div class="hero-content">
-        <span class="hero-tag">NOUVELLE COLLECTION • AUTHENTIQUE</span>
-        <h1 class="hero-title">Le style premium, sélectionné pour vous.</h1>
-        <p class="hero-subtitle">
-          Découvrez notre collection de vêtements et sneakers de haute qualité. Commandez en ligne en toute simplicité et faites-vous livrer où que vous soyez.
-        </p>
-        <div class="hero-buttons">
-          <a href="#catalogue" class="btn btn-primary btn-lg">Découvrir la boutique</a>
-          <a href="https://wa.me/221774532255?text=Bonjour%20Barry%20Aliou%20Shop%20!" target="_blank" rel="noopener" class="btn btn-outline btn-lg">
-            WhatsApp Direct
-          </a>
+  <!-- ===================================================================== -->
+  <!-- VUE SHOWROOM INTERACTIF : LA TRINGLE 3D & LA FICHE PRODUIT             -->
+  <!-- ===================================================================== -->
+  <main class="showroom-viewport" id="showroomViewport">
+
+    <!-- Bouton de retour vers la tringle (Visible en Vue 2) -->
+    <button type="button" class="return-rack-btn" id="returnRackBtn" title="Retourner à la collection complète">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      <span>COLLECTION</span>
+    </button>
+
+    <!-- La tringle métallique horizontale traversant l'écran -->
+    <div class="clothes-rail-assembly" id="railAssembly">
+      <div class="rail-mount-bracket left"></div>
+      <div class="rail-suspension-wire left"></div>
+      <div class="rail-metallic-bar"></div>
+      <div class="rail-suspension-wire right"></div>
+      <div class="rail-mount-bracket right"></div>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- VUE 1 : TRINGLE HORIZONTALE AVEC VÊTEMENTS SUR CINTRES               -->
+    <!-- =================================================================== -->
+    <div class="rail-stage-track" id="railStageTrack">
+      <div class="hangers-container" id="hangersContainer">
+        <!-- Rendu dynamique par JavaScript : cintres, vêtements, animations de balancement -->
+      </div>
+    </div>
+
+    <!-- Micro-badge d'aperçu au survol d'un article sur la tringle -->
+    <div class="rail-hover-tooltip" id="railHoverTooltip">
+      <span class="hover-tip-title" id="hoverTipTitle">UNKNOWN C DOVE VEST</span>
+      <span class="hover-tip-price" id="hoverTipPrice">45 000 FCFA</span>
+    </div>
+
+    <!-- =================================================================== -->
+    <!-- VUE 2 : TRANSITION VERS LA FICHE PRODUIT INTERACTIVE                -->
+    <!-- =================================================================== -->
+    <section class="product-focus-stage" id="productFocusStage">
+
+      <!-- Mini-aperçus / Sélecteur de variantes (Flottant à droite du produit) -->
+      <aside class="floating-variants-panel" id="floatingVariantsPanel">
+        <span class="variants-heading">Colorways</span>
+        <div class="variants-mini-stack" id="variantsMiniStack">
+          <!-- Miniatures des variantes sur cintres -->
         </div>
+      </aside>
+
+      <!-- Le Vêtement Centré avec Ombres Portées Douces et Bascule 3D -->
+      <div class="focused-garment-wrapper" id="focusedGarmentWrapper">
+        <div class="garment-flipper" id="garmentFlipper">
+          <!-- Face Avant (FRONT) -->
+          <div class="garment-face face-front">
+            <img id="focusedImgFront" src="" alt="Face avant" />
+          </div>
+          <!-- Face Arrière (BACK) -->
+          <div class="garment-face face-back">
+            <img id="focusedImgBack" src="" alt="Face arrière" />
+          </div>
+        </div>
+
+        <!-- Ombre portée douce sur fond clair -->
+        <div class="garment-ambient-shadow"></div>
       </div>
 
-      <div class="hero-visual">
-        <div class="hero-showcase">
-          <img
-            src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=85"
-            alt="Sneakers Jordan & Mode Barry Aliou Shop"
-            class="hero-main-img"
-          />
+      <!-- Contrôles sous le vêtement centré -->
+      <div class="focused-controls-panel" id="focusedControlsPanel">
+        <div class="focused-text-meta">
+          <h1 class="focused-product-title" id="focusedProductTitle">UNKNOWN C DOVE VEST</h1>
+          <div class="focused-price-row">
+            <span class="focused-main-price" id="focusedMainPrice">45 000 FCFA</span>
+            <span class="focused-gnf-price" id="focusedGnfPrice">🇬🇳 643 500 GNF</span>
+            <span class="focused-intl-price" id="focusedIntlPrice">≈ $75 USD • 69 € EUR</span>
+          </div>
+        </div>
+
+        <!-- Interrupteur / Bascule de face (FRONT / BACK) -->
+        <div class="face-toggle-switch">
+          <div class="switch-pill-track">
+            <button type="button" class="switch-side-btn active" id="btnSideFront" data-side="front">FRONT</button>
+            <button type="button" class="switch-side-btn" id="btnSideBack" data-side="back">BACK</button>
+            <span class="switch-active-glider" id="switchGlider"></span>
+          </div>
+        </div>
+
+        <!-- Boutons d'Action (ADD TO CART & COMMANDER 10%) -->
+        <div class="focused-actions-group">
+          <button type="button" class="btn-add-to-cart" id="focusedAddToCartBtn">
+            <span>ADD TO CART</span>
+          </button>
+
+          <button type="button" class="btn-direct-order" id="focusedDirectOrderBtn">
+            <span>COMMANDER (10 % Acompte)</span>
+          </button>
+        </div>
+
+        <!-- Mention Acompte 10% & Moyens de paiement -->
+        <div class="focused-deposit-caption">
+          Acompte 10 % obligatoire pour validation : <strong id="focusedDepositAmount">4 500 FCFA</strong>
+          • Wave / Orange Money / Carte Bancaire (+221 77 453 22 55)
         </div>
       </div>
+    </section>
+
+    <!-- Guide interactif discret en bas de page pour la tringle -->
+    <div class="rack-hint-bar" id="rackHintBar">
+      <span>Glissez le curseur pour faire balancer les articles • Cliquez sur un vêtement pour l'inspecter</span>
+    </div>
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- VUE GRILLE ALTERNATIVE (Pour navigation rapide ou mobile)             -->
+  <!-- ===================================================================== -->
+  <section class="grid-catalogue-view hidden" id="gridCatalogueView">
+    <div class="grid-container">
+      <div class="grid-header-row">
+        <div>
+          <h2>Catalogue complet</h2>
+          <p>Tous nos vêtements, sneakers et accessoires disponibles.</p>
+        </div>
+        <button type="button" class="btn-back-to-rack" id="btnBackToShowroom">← Vue Showroom Tringle</button>
+      </div>
+      <div class="classic-products-grid" id="classicProductsGrid"></div>
     </div>
   </section>
 
-  <!-- TABLEAU DE BORD ADMINISTRATEUR (Visible uniquement une fois connecté) -->
+  <!-- ===================================================================== -->
+  <!-- TIROIR PANIER LATÉRAL (BAG DRAWER)                                    -->
+  <!-- ===================================================================== -->
+  <aside class="cart-drawer-backdrop hidden" id="cartDrawerBackdrop">
+    <div class="cart-drawer-panel">
+      <div class="cart-drawer-header">
+        <h3>Votre Panier (<span id="cartDrawerCount">0</span>)</h3>
+        <button type="button" class="cart-drawer-close" id="closeCartDrawerBtn">&times;</button>
+      </div>
+
+      <div class="cart-drawer-items" id="cartDrawerItems">
+        <!-- Liste des articles ajoutés au panier -->
+      </div>
+
+      <div class="cart-drawer-footer" id="cartDrawerFooter">
+        <div class="cart-breakdown">
+          <div class="cart-row">
+            <span>Total des articles</span>
+            <strong id="cartTotalArticles">0 FCFA</strong>
+          </div>
+          <div class="cart-row cart-deposit-highlight">
+            <span>Acompte 10 % à régler maintenant</span>
+            <strong id="cartTotalDeposit">0 FCFA</strong>
+          </div>
+          <div class="cart-row cart-sub-row">
+            <span>Solde à la livraison (90 %)</span>
+            <span id="cartRemainingBalance">0 FCFA</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-primary btn-block btn-lg" id="checkoutFromCartBtn">
+          Valider ma commande (Payer 10 %)
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE DE COMMANDE & PAIEMENT 10 % (WAVE, ORANGE MONEY, CARTE)        -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="orderModalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Finaliser ma commande</h3>
+        <button type="button" class="modal-close-btn" id="closeOrderModalBtn">&times;</button>
+      </div>
+
+      <form id="orderForm" class="modal-body">
+        <input type="hidden" id="orderProductId" />
+
+        <div class="order-product-summary">
+          <img id="orderProductImage" src="" alt="Aperçu commande" class="order-summary-img" />
+          <div>
+            <h4 id="orderProductName">Nom de l'article</h4>
+            <div class="order-price-row">
+              <strong id="orderProductPrice">0 FCFA</strong>
+              <span id="orderProductPriceGnf" class="text-muted"></span>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px;">
+              Couleur : <strong id="orderSelectedColorSummary">Standard</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Choix de couleur si disponible -->
+        <div class="form-group" id="orderColorGroup">
+          <label class="form-label">Variante / Couleur sélectionnée</label>
+          <div class="color-choice-pills" id="orderColorOptions"></div>
+        </div>
+
+        <!-- Coordonnées Client -->
+        <div class="form-row-grid">
+          <div class="form-group">
+            <label for="customerFullName" class="form-label">Nom complet *</label>
+            <input type="text" id="customerFullName" class="form-input" placeholder="Votre nom et prénom" required maxlength="100" />
+          </div>
+          <div class="form-group">
+            <label for="customerPhone" class="form-label">Numéro de téléphone *</label>
+            <input type="tel" id="customerPhone" class="form-input" placeholder="Ex: +221 77 000 00 00 ou Guinée" required maxlength="25" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="customerAddress" class="form-label">Adresse de livraison complète *</label>
+          <div class="input-with-button">
+            <input type="text" id="customerAddress" class="form-input" placeholder="Quartier, Rue, Ville, Pays (Monde entier)" required maxlength="200" />
+            <button type="button" class="btn btn-secondary btn-sm" id="detectLocationBtn" title="Détecter ma position GPS">
+              📍 Localiser
+            </button>
+          </div>
+          <span class="field-hint" id="locationHint">Nous livrons partout dans le monde (Sénégal, Guinée, Europe, USA...)</span>
+        </div>
+
+        <!-- Calcul automatique de l'acompte de 10 % -->
+        <div class="deposit-calculation-box">
+          <div class="deposit-header">
+            <span class="deposit-tag">RÈGLEMENT DE L'ACOMPTE</span>
+            <span class="deposit-badge">10 % de validation</span>
+          </div>
+          <div class="deposit-amounts">
+            <div>
+              <span class="deposit-label">Montant total de l'article :</span>
+              <strong class="deposit-total" id="depositTotalDisplay">0 FCFA</strong>
+            </div>
+            <div class="deposit-highlight-row">
+              <span class="deposit-label">Acompte à payer (10 %) :</span>
+              <strong class="deposit-due" id="depositDueDisplay">0 FCFA</strong>
+            </div>
+            <div>
+              <span class="deposit-label">Solde restant à la livraison :</span>
+              <span class="deposit-rest" id="depositRestDisplay">0 FCFA</span>
+            </div>
+          </div>
+          <p class="deposit-security-text">
+            Conformément à nos conditions, votre commande est réservée dès réception des 10 % d'acompte. L'article est immédiatement retiré des ventes pour vous être préparé.
+          </p>
+        </div>
+
+        <!-- Sélection du mode de paiement -->
+        <div class="payment-method-container">
+          <label class="form-label">Choisissez votre moyen de paiement des 10 % :</label>
+          <div class="payment-tabs" id="paymentMethodTabs">
+            <button type="button" class="pay-tab-btn active" data-pay-method="Wave">
+              <span class="pay-tab-icon">🌊</span>
+              <span>Wave</span>
+            </button>
+            <button type="button" class="pay-tab-btn" data-pay-method="OrangeMoney">
+              <span class="pay-tab-icon">🟠</span>
+              <span>Orange Money</span>
+            </button>
+            <button type="button" class="pay-tab-btn" data-pay-method="Card">
+              <span class="pay-tab-icon">💳</span>
+              <span>Carte Bancaire</span>
+            </button>
+          </div>
+
+          <!-- Onglet Wave -->
+          <div class="pay-tab-panel" id="panelWave">
+            <div class="pay-instruction-card">
+              <div class="pay-card-header">
+                <strong>Paiement Wave (Sénégal &amp; International)</strong>
+                <button type="button" class="btn btn-sm btn-outline" id="copyWaveModalBtn">Copier le numéro</button>
+              </div>
+              <p>Envoyez les 10 % d'acompte directement sur le compte Wave officiel :</p>
+              <div class="merchant-phone-highlight">
+                <span class="phone-label">Numéro officiel :</span>
+                <strong class="phone-number">+221 77 453 22 55</strong>
+                <span class="phone-holder">(Mamadou Aliou Barry)</span>
+              </div>
+              <p class="pay-step-note">
+                Ouvrez votre application Wave &gt; Transférer &gt; Tapez <strong>77 453 22 55</strong> &gt; Validez le montant de 10 %.
+              </p>
+            </div>
+          </div>
+
+          <!-- Onglet Orange Money -->
+          <div class="pay-tab-panel hidden" id="panelOrangeMoney">
+            <div class="pay-instruction-card">
+              <div class="pay-card-header">
+                <strong>Paiement Orange Money (Sénégal ou Guinée)</strong>
+              </div>
+              <p>Envoyez les 10 % d'acompte au numéro Orange Money officiel :</p>
+              <div class="merchant-phone-highlight">
+                <span class="phone-label">Numéro marchand :</span>
+                <strong class="phone-number">+221 77 453 22 55</strong>
+                <span class="phone-holder">(Mamadou Aliou Barry)</span>
+              </div>
+              <p class="pay-step-note">
+                Depuis le Sénégal : tapez <code>#144#</code> ou l'app Max it.<br />
+                Depuis la Guinée : utilisez votre compte Orange Money Guinée vers Wave/OM Sénégal.
+              </p>
+            </div>
+          </div>
+
+          <!-- Onglet Carte Bancaire -->
+          <div class="pay-tab-panel hidden" id="panelCard">
+            <div class="pay-instruction-card">
+              <div class="pay-card-header">
+                <strong>Carte Bancaire Internationale (Visa / Mastercard)</strong>
+              </div>
+              <p>Paiement sécurisé converti directement sur notre compte Wave :</p>
+              <div class="merchant-phone-highlight">
+                <span class="phone-label">Bénéficiaire Wave :</span>
+                <strong class="phone-number">+221 77 453 22 55</strong>
+              </div>
+              <p class="pay-step-note" style="margin-top: 8px;">
+                Vous pouvez régler par carte bancaire internationale via l'application Wave, Sendwave ou TapTap Send vers le numéro <strong>+221 77 453 22 55</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 14px;">
+            <label for="paymentReferenceInput" class="form-label">Référence ou numéro de la transaction :</label>
+            <input type="text" id="paymentReferenceInput" class="form-input" placeholder="Ex: Réf de transaction ou votre numéro d'envoi" required maxlength="100" />
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="cancelOrderBtn">Annuler</button>
+          <button type="submit" class="btn btn-primary" id="submitOrderBtn">
+            Confirmer la commande (10 % payés)
+          </button>
+        </div>
+      </form>
+
+      <!-- Écran de succès de commande -->
+      <div id="orderSuccessView" class="modal-body hidden">
+        <div class="success-box">
+          <div class="success-icon">✓</div>
+          <h3>Félicitations pour votre commande !</h3>
+          <p class="success-message">
+            Votre réservation de 10 % a été transmise. L'article a été retiré de la vente pour vous être réservé.
+          </p>
+          <div class="success-actions">
+            <a href="#" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg btn-block" id="whatsappConfirmLink">
+              <span>Confirmer sur WhatsApp (+221 77 453 22 55)</span>
+            </a>
+            <button type="button" class="btn btn-secondary btn-block" id="closeSuccessModalBtn">
+              Retourner à la boutique
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE COMPTE CLIENT / INSCRIPTION FAVORIS                           -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="customerAuthModalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3 id="customerAuthModalTitle">Compte Client</h3>
+        <button type="button" class="modal-close-btn" id="closeCustomerAuthBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div id="customerProfileView" class="hidden">
+          <div class="profile-card">
+            <div class="profile-avatar">👤</div>
+            <h4 id="profileFullNameDisplay">Client</h4>
+            <p id="profilePhoneDisplay" class="text-muted"></p>
+            <div class="profile-actions">
+              <button type="button" class="btn btn-primary btn-block" id="goToFavoritesFromProfileBtn">Voir mes articles favoris ❤️</button>
+              <button type="button" class="btn btn-outline btn-block" id="logoutCustomerBtn">Se déconnecter</button>
+            </div>
+          </div>
+        </div>
+
+        <form id="customerRegisterForm">
+          <div class="auth-instruction-banner" id="customerAuthBanner">
+            Inscrivez-vous pour sauvegarder vos articles favoris et les retrouver facilement :
+          </div>
+          <div class="form-group">
+            <label for="clientLastNameInput" class="form-label">Nom de famille *</label>
+            <input type="text" id="clientLastNameInput" class="form-input" placeholder="Ex: Barry" required maxlength="60" />
+          </div>
+          <div class="form-group">
+            <label for="clientFirstNameInput" class="form-label">Prénom *</label>
+            <input type="text" id="clientFirstNameInput" class="form-input" placeholder="Ex: Mamadou" required maxlength="60" />
+          </div>
+          <div class="form-group">
+            <label for="clientPhoneInput" class="form-label">Numéro de téléphone *</label>
+            <input type="tel" id="clientPhoneInput" class="form-input" placeholder="Ex: +221 77 123 45 67 ou Guinée" required maxlength="25" />
+          </div>
+          <div class="modal-footer" style="padding: 16px 0 0 0;">
+            <button type="button" class="btn btn-secondary" id="cancelCustomerAuthBtn">Fermer</button>
+            <button type="submit" class="btn btn-primary" id="saveCustomerBtn">Continuer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE MES FAVORIS                                                   -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="favoritesModalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal-card modal-lg">
+      <div class="modal-header">
+        <h3>Mes Articles Favoris ❤️</h3>
+        <button type="button" class="modal-close-btn" id="closeFavoritesModalBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="fav-user-bar">
+          <span>Connecté en tant que : <strong id="favBarUserName">Client</strong></span>
+          <button type="button" class="btn btn-sm btn-ghost" id="favSwitchAccountBtn">Changer de compte</button>
+        </div>
+        <div class="favorites-list-grid" id="favoritesListContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- MODALE CONNEXION ADMINISTRATEUR (Email & PIN 100% masqués)             -->
+  <!-- ===================================================================== -->
+  <div class="modal-backdrop hidden" id="loginModalBackdrop" role="dialog" aria-modal="true">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h3>Espace Administrateur</h3>
+        <button type="button" class="modal-close-btn" id="closeLoginModalBtn">&times;</button>
+      </div>
+      <form id="loginForm" class="modal-body">
+        <div class="form-group">
+          <label for="adminEmailInput" class="form-label">Adresse Email</label>
+          <input type="email" id="adminEmailInput" class="form-input" autocomplete="username" placeholder="" required />
+        </div>
+        <div class="form-group">
+          <label for="adminPinInput" class="form-label">Code PIN de sécurité</label>
+          <input type="password" id="adminPinInput" class="form-input" autocomplete="current-password" placeholder="" required maxlength="12" />
+        </div>
+        <div id="loginErrorMsg" class="alert-box alert-danger hidden"></div>
+        <div class="modal-footer" style="padding: 14px 0 0 0;">
+          <button type="button" class="btn btn-secondary" id="cancelLoginBtn">Fermer</button>
+          <button type="submit" class="btn btn-primary">Se connecter</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- TABLEAU DE BORD ADMINISTRATEUR COMPLET                                -->
+  <!-- ===================================================================== -->
   <section class="admin-dashboard-section hidden" id="adminDashboardSection">
-    <div class="container">
+    <div class="admin-container">
       <div class="admin-banner">
         <div>
-          <span class="admin-status-tag">ESPACE ADMINISTRATEUR</span>
-          <h2>Gestion de Barry Aliou Shop</h2>
+          <span class="admin-status-tag">PANNEAU D'ADMINISTRATION</span>
+          <h2 id="adminShopHeading">Gestion Barry Aliou Shop</h2>
         </div>
         <div class="admin-banner-actions">
           <button type="button" class="btn btn-white btn-sm" id="adminBannerAddBtn">+ Nouvel article</button>
           <button type="button" class="btn btn-outline-light btn-sm" id="changeGnfRateBtn">
             Taux GNF (1 FCFA = <span id="currentGnfRateLabel">14.3</span> GNF)
           </button>
-          <button type="button" class="btn btn-outline-light btn-sm" id="changeAdminPinBtn">Changer Code PIN</button>
-          <button type="button" class="btn btn-outline-light btn-sm" id="editShopNameBtn">Nom boutique</button>
+          <button type="button" class="btn btn-outline-light btn-sm" id="changeAdminPinBtn">Changer PIN</button>
+          <button type="button" class="btn btn-outline-light btn-sm" id="editShopNameBtn">Nom Boutique</button>
         </div>
       </div>
 
@@ -135,21 +559,15 @@
           <strong class="stat-value" id="statDepositsTotal">0 FCFA</strong>
         </div>
         <div class="stat-card">
-          <span class="stat-label">Clients inscrits</span>
+          <span class="stat-label">Clients enregistrés</span>
           <strong class="stat-value" id="statCustomersCount">0</strong>
         </div>
       </div>
 
       <div class="admin-tabs">
-        <button type="button" class="admin-tab active" data-tab="orders">
-          Commandes (<span id="tabOrdersCount">0</span>)
-        </button>
-        <button type="button" class="admin-tab" data-tab="inventory">
-          Articles (<span id="tabInventoryCount">0</span>)
-        </button>
-        <button type="button" class="admin-tab" data-tab="customers">
-          Clients (<span id="tabCustomersCount">0</span>)
-        </button>
+        <button type="button" class="admin-tab active" data-tab="orders">Commandes (<span id="tabOrdersCount">0</span>)</button>
+        <button type="button" class="admin-tab" data-tab="inventory">Articles (<span id="tabInventoryCount">0</span>)</button>
+        <button type="button" class="admin-tab" data-tab="customers">Clients (<span id="tabCustomersCount">0</span>)</button>
       </div>
 
       <div class="admin-tab-content" id="adminTabOrders">
@@ -172,437 +590,71 @@
     </div>
   </section>
 
-  <!-- CATALOGUE PUBLIC ÉPURÉ -->
-  <main class="catalogue-section" id="catalogue">
-    <div class="container">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title">Catalogue</h2>
-          <p class="section-desc">Cliquez sur un article pour le voir en grand ou passer commande.</p>
-        </div>
-        <div class="catalogue-meta">
-          <span class="available-pill" id="catalogueCountLabel">0 article</span>
-          <button type="button" class="btn btn-primary btn-sm hidden" id="catalogueAddBtn">+ Ajouter</button>
-        </div>
-      </div>
-
-      <div class="products-grid" id="productsGrid"></div>
-
-      <div class="empty-catalogue hidden" id="emptyCatalogueState">
-        <h3 id="emptyCatalogueTitle">Aucun article disponible</h3>
-        <p id="emptyCatalogueText">Revenez très bientôt pour découvrir nos prochains arrivages.</p>
-        <button type="button" class="btn btn-primary hidden" id="emptyStateAddBtn">+ Ajouter un article</button>
-      </div>
-    </div>
-  </main>
-
-  <!-- Pied de page sobre -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <span class="brand-mark">BAS</span>
-        <strong id="footerBrandName">Barry Aliou Shop</strong>
-      </div>
-      <div class="footer-links">
-        <span>WhatsApp &amp; Commandes : <strong>+221 77 453 22 55</strong></span>
-      </div>
-    </div>
-  </footer>
-
   <!-- ===================================================================== -->
-  <!-- MODALE 0 : VOIR L'ANNONCE EN GRAND + WHATSAPP + COMMANDER             -->
-  <!-- ===================================================================== -->
-  <div class="modal-backdrop hidden" id="detailModalBackdrop" role="dialog" aria-modal="true">
-    <div class="modal-card modal-detail">
-      <button type="button" class="modal-close-floating" id="closeDetailModalBtn" aria-label="Fermer">&times;</button>
-
-      <div class="detail-layout">
-        <!-- Grande photo à gauche -->
-        <div class="detail-image-viewer">
-          <img id="detailProductImage" src="" alt="" class="detail-large-img" />
-        </div>
-
-        <!-- Détails propres à droite -->
-        <div class="detail-sidebar">
-          <div class="detail-header-row">
-            <span class="stock-pill">Disponible</span>
-            <button type="button" class="btn-fav-inline" id="detailToggleFavBtn">🤍 Favoris</button>
-          </div>
-
-          <h2 id="detailProductName" class="detail-title">Nom de l'article</h2>
-
-          <div class="detail-price-display">
-            <div class="detail-price-main" id="detailProductPrice">0 FCFA</div>
-            <div class="detail-price-gnf" id="detailProductPriceGnf"></div>
-            <div class="detail-price-intl" id="detailProductPriceIntl"></div>
-          </div>
-
-          <div class="detail-colors-block">
-            <span class="detail-label">Couleurs disponibles</span>
-            <div id="detailColorsList" class="detail-colors-list"></div>
-          </div>
-
-          <div class="detail-order-notice">
-            <strong>Réservation &amp; Commande :</strong>
-            <p>
-              Pour commander cet article et le réserver immédiatement, un acompte de <strong>10 %</strong> (<strong id="detailDepositAmount">0 FCFA</strong>) vous sera demandé à l'étape suivante.
-            </p>
-          </div>
-
-          <div class="detail-actions">
-            <button type="button" class="btn btn-primary btn-lg btn-block" id="detailOrderNowBtn">
-              Commander cet article
-            </button>
-            <a href="#" target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg btn-block" id="detailWhatsappBtn">
-              Contactez-moi sur WhatsApp
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- MODALE 1 : FORMULAIRE DE COMMANDE (C'EST ICI QU'ON CALCULE LES 10 %)   -->
-  <!-- ===================================================================== -->
-  <div class="modal-backdrop hidden" id="orderModalBackdrop" role="dialog" aria-modal="true">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3>Finaliser ma commande</h3>
-        <button type="button" class="modal-close-btn" id="closeOrderModalBtn" aria-label="Fermer">&times;</button>
-      </div>
-
-      <form id="orderForm" class="modal-body">
-        <input type="hidden" id="orderProductId" />
-
-        <div class="order-product-summary">
-          <img id="orderProductImage" src="" alt="" class="order-summary-img" />
-          <div>
-            <h4 id="orderProductName">Nom de l'article</h4>
-            <div class="order-price-row">
-              <strong id="orderProductPrice">0 FCFA</strong>
-              <span id="orderProductPriceGnf" class="text-muted"></span>
-              <span id="orderProductPriceIntl" class="text-muted"></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group" id="orderColorGroup">
-          <label class="form-label">Couleur souhaitée</label>
-          <div class="color-Choice-pills" id="orderColorOptions"></div>
-        </div>
-
-        <div class="form-row-grid">
-          <div class="form-group">
-            <label for="customerFullName" class="form-label">Nom complet *</label>
-            <input type="text" id="customerFullName" class="form-input" placeholder="Votre nom et prénom" required maxlength="100" />
-          </div>
-          <div class="form-group">
-            <label for="customerPhone" class="form-label">Numéro de téléphone *</label>
-            <input type="tel" id="customerPhone" class="form-input" placeholder="Ex : +221 77... / +224... / +1..." required maxlength="30" />
-          </div>
-        </div>
-
-        <div class="form-row-grid">
-          <div class="form-group">
-            <label for="customerCountry" class="form-label">Pays de livraison *</label>
-            <select id="customerCountry" class="form-input" required>
-              <option value="Sénégal">🇸🇳 Sénégal</option>
-              <option value="Guinée">🇬🇳 Guinée</option>
-              <option value="États-Unis (USA)">🇺🇸 États-Unis (USA)</option>
-              <option value="France">🇫🇷 France</option>
-              <option value="Canada">🇨🇦 Canada</option>
-              <option value="Côte d'Ivoire">🇨🇮 Côte d'Ivoire</option>
-              <option value="Mali">🇲🇱 Mali</option>
-              <option value="Belgique">🇧🇪 Belgique</option>
-              <option value="Espagne">🇪🇸 Espagne</option>
-              <option value="Italie">🇮🇹 Italie</option>
-              <option value="Maroc">🇲🇦 Maroc</option>
-              <option value="Autre pays (Monde)">🌍 Autre pays</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <label for="customerAddress" class="form-label">Ville / Adresse *</label>
-              <button type="button" class="link-btn" id="detectLocationBtn">📍 Ma position</button>
-            </div>
-            <input type="text" id="customerAddress" class="form-input" placeholder="Votre ville et quartier" required maxlength="160" />
-          </div>
-        </div>
-        <p class="gps-status-note hidden" id="gpsStatusNote"></p>
-
-        <!-- Encadré de calcul des 10 % d'acompte -->
-        <div class="deposit-box">
-          <div class="deposit-row">
-            <span>Prix de l'article</span>
-            <strong id="calcFullPrice">0 FCFA</strong>
-          </div>
-          <div class="deposit-row deposit-main">
-            <span>Acompte de 10 % à régler pour commander</span>
-            <div style="text-align:right;">
-              <strong id="calcDepositAmount">0 FCFA</strong>
-              <div id="calcDepositGnfSub" class="deposit-sub"></div>
-            </div>
-          </div>
-          <div class="deposit-row text-muted">
-            <span>Reste à payer à la livraison (90 %)</span>
-            <span id="calcRemainingAmount">0 FCFA</span>
-          </div>
-
-          <div class="payment-selector-tabs" id="paymentMethodTabs">
-            <button type="button" class="pay-tab-btn active" data-pay-method="Wave">Wave</button>
-            <button type="button" class="pay-tab-btn" data-pay-method="Orange Money">Orange Money</button>
-            <button type="button" class="pay-tab-btn" data-pay-method="Carte Bancaire → Wave">Carte Bancaire</button>
-          </div>
-
-          <div id="mobileMoneyInstructions" class="payment-instruction-card">
-            <div class="payment-phone-line">
-              <div>
-                <span id="mobileMoneyLabel" class="payment-small-label">Envoyez l'acompte de <strong id="instructionDepositText">0 FCFA</strong> au :</span>
-                <strong class="payment-phone-number">+221 77 453 22 55</strong>
-              </div>
-              <button type="button" class="btn btn-outline btn-sm" id="copyWaveModalBtn">Copier</button>
-            </div>
-            <p class="payment-tip" id="mobileMoneyConversionTip">
-              Depuis la Guinée ou l'étranger : choisissez Transfert International vers le Sénégal (+221 77 453 22 55).
-            </p>
-          </div>
-
-          <div id="cardPaymentPanel" class="payment-instruction-card hidden">
-            <p class="payment-tip">
-              <strong>Paiement par Carte Bancaire vers notre Wave :</strong><br/>
-              Via <strong>Sendwave</strong>, <strong>TapTap Send</strong> ou <strong>Remitly</strong>, choisissez <strong>Sénégal → Wave</strong> au numéro <strong>+221 77 453 22 55</strong> (Mamadou Aliou Barry) et réglez <strong id="cardSolution1Amount">0 FCFA</strong> avec votre carte.
-            </p>
-          </div>
-
-          <div class="form-group mt-2" style="margin-bottom:0;">
-            <label for="paymentReferenceInput" class="form-label">Référence du paiement ou nom de l'expéditeur *</label>
-            <input type="text" id="paymentReferenceInput" class="form-input" placeholder="Ex : Réf. transfert Wave / Orange Money / Sendwave" required maxlength="60" />
-          </div>
-        </div>
-
-        <label class="checkbox-confirm">
-          <input type="checkbox" id="confirmWaveDeposit" required />
-          <span>Je confirme avoir envoyé l'acompte de 10 % (<strong id="checkboxDepositAmount">0 FCFA</strong>) au <strong>+221 77 453 22 55</strong>.</span>
-        </label>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-ghost" id="cancelOrderBtn">Annuler</button>
-          <button type="submit" class="btn btn-primary">Valider ma commande</button>
-        </div>
-      </form>
-
-      <!-- Étape 2 : Confirmation -->
-      <div id="orderSuccessView" class="modal-body order-success-view hidden">
-        <div class="success-check-circle">✓</div>
-        <h3>Commande enregistrée</h3>
-        <p class="success-desc">
-          Merci <strong id="successCustomerName"></strong> ! L'article <strong id="successProductName"></strong> vous est réservé et a été retiré du catalogue.
-        </p>
-
-        <div class="receipt-card">
-          <div class="receipt-row"><span>Client</span><strong id="receiptClient"></strong></div>
-          <div class="receipt-row"><span>Livraison</span><strong id="receiptLocation"></strong></div>
-          <div class="receipt-row"><span>Article</span><strong id="receiptItem"></strong></div>
-          <div class="receipt-row"><span>Couleur</span><strong id="receiptColor"></strong></div>
-          <div class="receipt-row"><span>Paiement</span><strong id="receiptMethod"></strong></div>
-          <div class="receipt-row"><span>Acompte 10 % payé</span><strong id="receiptDeposit"></strong></div>
-          <div class="receipt-row"><span>Reste à payer</span><strong id="receiptRemaining"></strong></div>
-        </div>
-
-        <div class="success-actions">
-          <a href="#" target="_blank" rel="noopener" id="whatsappConfirmLink" class="btn btn-whatsapp btn-block">
-            Envoyer ma confirmation sur WhatsApp
-          </a>
-          <button type="button" class="btn btn-outline btn-block" id="closeSuccessModalBtn">Retour à la boutique</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- MODALE A : INSCRIPTION / CONNEXION COMPTE CLIENT (FAVORIS)            -->
-  <!-- ===================================================================== -->
-  <div class="modal-backdrop hidden" id="customerAuthModalBackdrop" role="dialog" aria-modal="true">
-    <div class="modal-card modal-sm">
-      <div class="modal-header">
-        <h3 id="customerAuthTitle">Compte Client</h3>
-        <button type="button" class="modal-close-btn" id="closeCustomerAuthBtn" aria-label="Fermer">&times;</button>
-      </div>
-
-      <div class="modal-body">
-        <form id="customerRegisterForm">
-          <p class="modal-helper-text" id="authPromptBanner">
-            Inscrivez-vous avec votre nom, prénom et téléphone pour sauvegarder vos articles en favoris.
-          </p>
-
-          <div class="form-group">
-            <label for="clientLastNameInput" class="form-label">Nom *</label>
-            <input type="text" id="clientLastNameInput" class="form-input" placeholder="Votre nom" required maxlength="60" />
-          </div>
-
-          <div class="form-group">
-            <label for="clientFirstNameInput" class="form-label">Prénom *</label>
-            <input type="text" id="clientFirstNameInput" class="form-input" placeholder="Votre prénom" required maxlength="60" />
-          </div>
-
-          <div class="form-group">
-            <label for="clientPhoneInput" class="form-label">Numéro de téléphone *</label>
-            <input type="tel" id="clientPhoneInput" class="form-input" placeholder="Votre numéro de téléphone" required maxlength="30" />
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-ghost" id="cancelCustomerAuthBtn">Annuler</button>
-            <button type="submit" class="btn btn-primary">Continuer</button>
-          </div>
-        </form>
-
-        <div id="customerProfileView" class="hidden">
-          <div class="customer-profile-box">
-            <h4 id="profileFullNameDisplay"></h4>
-            <p id="profilePhoneDisplay"></p>
-          </div>
-          <div class="modal-footer" style="justify-content: space-between;">
-            <button type="button" class="btn btn-ghost" style="color:var(--danger);" id="logoutCustomerBtn">Déconnexion</button>
-            <button type="button" class="btn btn-primary" id="goToFavoritesFromProfileBtn">Mes favoris</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- MODALE B : MES FAVORIS                                                -->
-  <!-- ===================================================================== -->
-  <div class="modal-backdrop hidden" id="favoritesModalBackdrop" role="dialog" aria-modal="true">
-    <div class="modal-card modal-detail">
-      <div class="modal-header">
-        <h3>Mes Favoris</h3>
-        <button type="button" class="modal-close-btn" id="closeFavoritesModalBtn" aria-label="Fermer">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="favorites-user-bar">
-          <span>Compte : <strong id="favBarUserName"></strong></span>
-          <button type="button" class="link-btn" id="favSwitchAccountBtn">Mon profil</button>
-        </div>
-        <div id="favoritesListContainer" class="favorites-grid-list"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- MODALE 2 : CONNEXION ADMINISTRATEUR (AUCUN INDICE VISIBLE)            -->
-  <!-- ===================================================================== -->
-  <div class="modal-backdrop hidden" id="loginModalBackdrop" role="dialog" aria-modal="true">
-    <div class="modal-card modal-sm">
-      <div class="modal-header">
-        <h3>Administration</h3>
-        <button type="button" class="modal-close-btn" id="closeLoginModalBtn" aria-label="Fermer">&times;</button>
-      </div>
-
-      <form id="loginForm" class="modal-body" autocomplete="off">
-        <div class="form-group">
-          <label for="adminEmailInput" class="form-label">Adresse e-mail</label>
-          <input
-            type="email"
-            id="adminEmailInput"
-            class="form-input"
-            placeholder="Saisissez votre adresse e-mail"
-            required
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="adminPinInput" class="form-label">Code d'accès</label>
-          <input
-            type="password"
-            id="adminPinInput"
-            class="form-input"
-            placeholder="••••••••"
-            required
-            maxlength="20"
-          />
-        </div>
-
-        <p class="form-error hidden" id="loginErrorMsg">Accès refusé.</p>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-ghost" id="cancelLoginBtn">Annuler</button>
-          <button type="submit" class="btn btn-primary">Se connecter</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- ===================================================================== -->
-  <!-- MODALE 3 : AJOUTER / MODIFIER UN ARTICLE (ADMIN)                      -->
+  <!-- MODALE AJOUT / MODIFICATION D'ARTICLE PAR L'ADMIN                     -->
   <!-- ===================================================================== -->
   <div class="modal-backdrop hidden" id="productModalBackdrop" role="dialog" aria-modal="true">
-    <div class="modal-card">
+    <div class="modal-card modal-lg">
       <div class="modal-header">
         <h3 id="productModalTitle">Ajouter un article</h3>
-        <button type="button" class="modal-close-btn" id="closeProductModalBtn" aria-label="Fermer">&times;</button>
+        <button type="button" class="modal-close-btn" id="closeProductModalBtn">&times;</button>
       </div>
 
       <form id="productForm" class="modal-body">
         <input type="hidden" id="editProductId" />
 
-        <div class="form-group">
-          <label for="productNameInput" class="form-label">Nom de l'article *</label>
-          <input type="text" id="productNameInput" class="form-input" placeholder="Ex : Jordan 4 Retro / Ensemble Costume" required maxlength="120" />
+        <div class="form-row-grid">
+          <div class="form-group">
+            <label for="productNameInput" class="form-label">Nom de l'article *</label>
+            <input type="text" id="productNameInput" class="form-input" placeholder="Ex: Veste Streetwear Puffer" required maxlength="120" />
+          </div>
+          <div class="form-group">
+            <label for="productPriceInput" class="form-label">Prix de vente (en FCFA) *</label>
+            <input type="number" id="productPriceInput" class="form-input" placeholder="Ex: 45000" min="500" step="500" required />
+            <span class="field-hint" id="liveDepositCalcHint">Acompte calculé (10 %) : 0 FCFA</span>
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="productPriceInput" class="form-label">Prix (FCFA) *</label>
-          <input type="number" id="productPriceInput" class="form-input" placeholder="Ex : 35000" min="100" step="50" required />
-          <div class="live-deposit-preview" id="adminLiveDepositPreview"></div>
-        </div>
-
-        <div class="form-group">
-          <label class="form-label">Photo de l'article *</label>
+          <label class="form-label">Photo principale de l'annonce *</label>
           <div class="photo-dropzone" id="photoDropzone">
-            <input type="file" id="productPhotoFile" accept="image/*" class="file-input-hidden" />
+            <input type="file" id="productPhotoFile" accept="image/*" class="file-hidden-input" />
             <div id="photoUploadPlaceholder" class="upload-placeholder">
-              <strong>Choisir une photo depuis votre appareil</strong>
-              <span>ou collez un lien d'image ci-dessous</span>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <span>Glissez une photo ou cliquez pour importer</span>
             </div>
             <div id="photoPreviewWrapper" class="photo-preview-wrapper hidden">
               <img id="productPhotoPreview" src="" alt="Aperçu" />
-              <button type="button" class="btn-change-photo" id="changePhotoBtn">Changer la photo</button>
+              <button type="button" class="btn btn-sm btn-secondary" id="changePhotoBtn">Remplacer</button>
             </div>
           </div>
-          <input type="url" id="productPhotoUrlInput" class="form-input mt-2" placeholder="Lien URL d'une image (optionnel)" />
+          <input type="url" id="productPhotoUrlInput" class="form-input" style="margin-top: 8px;" placeholder="Ou collez un lien d'image direct (https://...)" />
         </div>
 
+        <!-- Couleurs / Déclinaisons disponibles -->
         <div class="form-group">
-          <label class="form-label">Couleurs disponibles *</label>
-          <div class="preset-colors-grid" id="presetColorsContainer"></div>
-
-          <div class="custom-color-adder">
-            <input type="color" id="customColorHex" value="#111111" class="color-picker-native" />
-            <input type="text" id="customColorName" class="form-input" placeholder="Autre couleur..." maxlength="40" />
-            <button type="button" class="btn btn-outline btn-sm" id="addCustomColorBtn">+ Ajouter</button>
+          <label class="form-label">Couleurs disponibles * (sélectionnez-en au moins une)</label>
+          <div class="preset-colors-picker" id="presetColorsContainer"></div>
+          <div class="custom-color-inline">
+            <input type="text" id="customColorName" class="form-input" placeholder="Autre couleur (Ex: Orange)" maxlength="30" />
+            <input type="color" id="customColorHex" value="#F95700" title="Choisir la teinte" />
+            <button type="button" class="btn btn-secondary btn-sm" id="addCustomColorBtn">+ Ajouter cette couleur</button>
           </div>
-
-          <div class="selected-colors-box">
-            <div class="selected-colors-list" id="selectedColorsList"></div>
-          </div>
+          <div class="selected-colors-tags" id="selectedColorsList"></div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-ghost" id="cancelProductModalBtn">Annuler</button>
-          <button type="submit" class="btn btn-primary" id="saveProductSubmitBtn">Publier</button>
+          <button type="button" class="btn btn-secondary" id="cancelProductModalBtn">Annuler</button>
+          <button type="submit" class="btn btn-primary" id="saveProductSubmitBtn">Publier sur la boutique</button>
         </div>
       </form>
     </div>
   </div>
 
-  <button type="button" class="hidden" id="copyWaveFooterBtn"></button>
+  <!-- Toast Notification Flottante -->
+  <div id="toastNotification" class="toast-popup hidden" role="status" aria-live="polite"></div>
 
-  <div class="toast-notification hidden" id="toastNotification">
-    <span id="toastMessage"></span>
-  </div>
-
+  <!-- Scripts -->
   <script src="app.js"></script>
 </body>
 </html>
